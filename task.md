@@ -1,0 +1,96 @@
+# Mailstorm - Project Tasks
+
+- [x] Create Workspace (`/home/neo/mailstorm`) <!-- id: -1 -->
+
+- [/] Define Universe & Lore <!-- id: 0 -->
+    - [ ] Document setting (The Workplace) <!-- id: 1 -->
+    - [ ] flesh out "DBZ elements" integration <!-- id: 2 -->
+    - [/] Define "Corporate Ki" & Power Systems <!-- id: 2a -->
+        - [ ] Establish RPG Classes (Ops, Mgmt, Union) <!-- id: 2a1 -->
+        - [ ] Rank Structure (Intern to CEO) <!-- id: 2a2 -->
+    - [x] Integrate "Phantom Tray" Story <!-- id: 2b -->
+    - [x] Integrate "Earbud/ADA" Story <!-- id: 2c -->
+- [ ] Character Development <!-- id: 3 -->
+    - [ ] Stan (MC) <!-- id: 4 -->
+    - [ ] Chuck (Supervisor) <!-- id: 5 -->
+    - [ ] Barb (Union Rep) <!-- id: 6 -->
+    - [ ] Sparky (Maintenance) <!-- id: 7 -->
+    - [ ] Heather (Gen Z) <!-- id: 8 -->
+- [/] Visual Development <!-- id: 9 -->
+    - [/] define art style <!-- id: 10 -->
+    - [x] generate title card <!-- id: 10b -->
+    - [x] generate character sheets <!-- id: 11 -->
+        - [x] Referencing Stan (Cynical) <!-- id: 11a -->
+        - [x] Referencing Chuck (Human/Squirly) <!-- id: 11b -->
+    - [x] generate environment concepts <!-- id: 12 -->
+        - [x] The Pit (Main Floor) <!-- id: 12a -->
+        - [x] Chuck's Office <!-- id: 12b -->
+        - [x] The Breakroom <!-- id: 12c -->
+- [x] Episode 1 Production <!-- id: 13 -->
+    - [x] Write script/outline <!-- id: 14 -->
+        - [x] Select Plot Hook (Orientation) <!-- id: 14a -->
+        - [x] Draft Scene 1: The Lobby <!-- id: 14b -->
+        - [x] Draft Scene 2: The Tour <!-- id: 14c -->
+        - [x] Draft Scene 3: The Standoff (Chuck's Folly) <!-- id: 14d -->
+        - [x] Draft Scene 4: The Phantom Tray (Climax) <!-- id: 14e -->
+        - [x] Draft Scene 5: The Aftermath (Resolution) <!-- id: 14f -->
+    - [ ] Storyboard <!-- id: 15 -->
+    - [x] Generate panels <!-- id: 16 -->
+        - [x] Scene 1 Panels <!-- id: 16a -->
+        - [x] Scene 2 & 3 Action Panels <!-- id: 16b -->
+        - [x] Scene 4 (Climax) Panels <!-- id: 16c -->
+        - [x] Scene 5 (Resolution) Panels <!-- id: 16d -->
+    - [ ] Lettering & assembly <!-- id: 17 -->
+- [x] Web Platform <!-- id: 18 -->
+    - [x] Design comic viewer <!-- id: 19 -->
+    - [x] Build website <!-- id: 20 -->
+
+# Phase 2: Advanced Universe Development
+# Phase 2: The Universe Bible (Deep Lore)
+- [/] History & Timeline (The Corporate Ages -> The Constitutional Eras) <!-- id: 24 -->
+    - [x] The Founding Fathers & The Postal Clause <!-- id: 24a -->
+    - [x] The Pony Express & The Zip Code Reformation <!-- id: 24b -->
+    - [x] The Great Budget Cuts <!-- id: 24c -->
+    - [x] The Secret Chronicles (Dead Letters, V-Mail, Missile Mail) <!-- id: 24d -->
+- [x] Boots on the Ground (The Worker's Reality) <!-- id: 42 -->
+    - [x] The LLV (Long Life Vehicle) Curse <!-- id: 42a -->
+    - [x] Management Harassment (The Scanner) <!-- id: 42b -->
+    - [x] Route Hazards (The hidden rules of the street) <!-- id: 42c -->
+    - [x] Tools of the Trade (Relics & Curses) <!-- id: 42d -->
+    - [x] The Daily Rituals (Stand-ups & Safety Briefs) <!-- id: 42e -->
+- [x] Geography & Locations <!-- id: 25 -->
+    - [x] The Federal Building (The Ziggurat/Dungeon) <!-- id: 25a -->
+    - [x] The Sorting Floor (Sensory Hell) <!-- id: 25e -->
+    - [x] The Sprawl (Speedy-Go Territory) <!-- id: 25b -->
+    - [x] The Rust Belt (The Old Routes) <!-- id: 25c -->
+    - [x] The Dead Zones (Liminal Spaces) <!-- id: 25d -->
+    - [ ] The Union Contract (Paladin Oaths) <!-- id: 40c -->
+- [x] Geography & Locations <!-- id: 25 -->
+    - [x] The Federal Building (The Dungeon) <!-- id: 25a -->
+    - [x] The Sprawl (Speedy-Go) <!-- id: 25b -->
+    - [x] The Rust Belt (Omni-Corp) <!-- id: 25c -->
+    - [x] The Cloud (The Heavens/Server Farms) <!-- id: 25d -->
+    - [x] The Basement (The Underworld) <!-- id: 25e -->
+- [x] The Pantheon (The C-Suite) <!-- id: 41 -->
+    - [x] The CEO (The Founder/Ben Franklin) <!-- id: 41a -->
+    - [x] The Board (The Old Gods/Governors) <!-- id: 41b -->
+    - [x] The Shareholders (Speedy-Go's Eldritch Horrors) <!-- id: 41c -->
+- [x] Bestiary Expansion <!-- id: 26 -->
+    - [x] Audit Demons <!-- id: 26a -->
+    - [x] Server Goblins <!-- id: 26b -->
+    - [x] Paper Golems <!-- id: 26c -->
+    - [x] The Route Ghosts <!-- id: 26d -->
+    - [x] Platinum Polish (SCP/Field Guide Style) <!-- id: 26e -->
+
+# Phase 3: Season 1 Production (The Mandate)
+- [x] Season 1 Arc Architecture (Legacy Mode) <!-- id: 31 -->
+- [x] Episode 1: The New Hire (Retrofit) <!-- id: 34 -->
+    - [x] Scripting (Deep Lore) <!-- id: 34a -->
+    - [x] Panel Regeneration (Liminal Brutalism) <!-- id: 34b -->
+    - [x] Final Polish (Remove old drawings) <!-- id: 34c -->
+- [x] Episode 2: The Algorithm's Gaze <!-- id: 35 -->
+    - [x] Scripting <!-- id: 35a -->
+    - [x] Panel Generation <!-- id: 35b -->
+- [x] Visual Overhaul (Berserk/Old School Style) <!-- id: 36 -->
+    - [x] Episode 1 Regeneration (14 panels) <!-- id: 36a -->
+    - [x] Episode 2 Regeneration (10 panels) <!-- id: 36b -->

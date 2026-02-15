@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build output
+web/dist/
+
+# IDE
+.vscode/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vercel
+.vercel/
+
+# Wrangler
+.wrangler/
+
+# Logs
+*.log

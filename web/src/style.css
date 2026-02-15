@@ -1,0 +1,99 @@
+:root {
+  --font-body: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --color-bg: #1a1a1a;
+  --color-text: #ffffff;
+  --color-primary: #ff4500; /* Energetic Orange */
+  --color-accent: #00bfff; /* Electric Blue */
+  --color-dark: #0d0d0d;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+#app {
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 2px solid var(--color-dark);
+  background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+}
+
+h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-style: italic;
+  font-weight: 900;
+  margin: 0;
+  text-shadow: 0 0 10px var(--color-primary);
+  letter-spacing: -2px;
+}
+
+/* Comic Viewer */
+.comic-viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* Seamless vertical scroll */
+  background-color: var(--color-dark);
+}
+
+.comic-panel {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Controls */
+.controls {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-bg);
+}
+
+button {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.1s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px var(--color-primary);
+}
+
+/* Landing Page */
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.hero img {
+  max-width: 100%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 5px var(--color-primary)); }
+  50% { transform: scale(1.02); filter: drop-shadow(0 0 20px var(--color-primary)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--color-primary)); }
+}
