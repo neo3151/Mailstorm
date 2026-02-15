@@ -14,7 +14,8 @@ const state = {
     { id: 5, title: "Episode 5: Dead Letter" },
     { id: 6, title: "Episode 6: The Strike" },
     { id: 7, title: "Episode 7: Black Friday" },
-    { id: 8, title: "Episode 8: The Mandate (Season Finale)" }
+    { id: 8, title: "Episode 8: The Mandate (Season Finale)" },
+    { id: 9, title: "Episode 9: The Ghost in the Machine (S2 Premiere)" }
   ]
 }
 

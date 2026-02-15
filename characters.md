@@ -82,7 +82,29 @@ He's seen things in the vents. Dark things. Sparky wields a wrench with the skil
 
 ---
 
-## 🔴 ANTAGONISTS & THREATS
+## The AFSM100 (The Flat Sorter)
+**Type**: Industrial Machine / Cursed Object | **Alignment**: Chaotic Hungry
+A massive, ancient piece of mail-sorting machinery based on the **USPS AFSM100** (Automated Flat Sorting Machine 100). A sprawling 100-foot-long labyrinth of metal, belts, and hundreds of sorting bins. When it's not breaking down, it's rumored to be sorting mail from other dimensions. It requires a "Day Shift Peace Offering" (usually a finished backlog) to stay dormant, but during the holidays, it awakens as a conduit for **The Sprawl**. The night shift calls it "The Beast" for a reason.
+
+---
+
+### "The Scrubs"
+**Role**: Night Shift Support | **Status**: Active (and terrified)
+**First Appearance**: Episode 9 — "The Ghost in the Machine"
+
+The new generation of night-shift workers. Cocky, energetic, and completely unprepared for the supernatural weight of the D.O.L. They represent the "clean slate"—workers who weren't there for the Season 1 war and think the job is just... a job. They are about to learn about the "Permanent Collection" the hard way.
+
+---
+
+## 🔴 ANTAGONISTS & THREATS (SEASON 2)
+
+### The Sorter Wraith
+**Role**: Industrial Horror | **Classification**: Machine Manifestation
+**Appearance**: Episode 9 — "The Ghost in the Machine"
+
+A manifestation of corporate stress and mechanical fatigue. Made of tangled sorter belts, metal bins, and pressurized blue ink. It uses OCR sensors as "eyes" and attacks with a "Permanent Collection" stamp that seals the target's fate. It haunts the Flat Sorter during holiday backlogs.
+
+---
 
 ### Ace Nakamura
 **Role**: Elite Speedy-Go Courier | **Status**: Abandoned in The Sprawl's collapse
