@@ -184,5 +184,19 @@
     }
   },
   "active": "c24d168902129e2d",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "web/public/comics/episode_3/manifest.json",
+    "web/public/comics/episode_3/ep3_berserk_the_strut_1771127264196.png",
+    "web/public/comics/episode_3/ep3_berserk_spray_toss_1771126974983.png",
+    "web/public/comics/episode_3/ep3_berserk_scanner_screams_1771127039923.png",
+    "web/public/comics/episode_3/ep3_berserk_rubber_bands_1771127161241.png",
+    "web/public/comics/episode_3/ep3_berserk_psychic_scream_1771127232209.png",
+    "web/public/comics/episode_3/ep3_berserk_pirates_spotted_1771127142678.png",
+    "web/public/comics/episode_3/ep3_berserk_pirates_retreat_1771127176172.png",
+    "web/public/comics/episode_3/ep3_berserk_mimic_teeth_1771127092190.png",
+    "web/public/comics/episode_3/ep3_berserk_loading_ritual_1771126945011.png",
+    "web/public/comics/episode_3/ep3_berserk_llv_dock_1771126928489.png",
+    "web/public/comics/episode_3",
+    "episode_3_script.md"
+  ]
 }

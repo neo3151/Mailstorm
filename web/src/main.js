@@ -8,7 +8,8 @@ const state = {
   currentEpisode: 1,
   episodes: [
     { id: 1, title: "Episode 1: The New Hire" },
-    { id: 2, title: "Episode 2: The Algorithm's Gaze" }
+    { id: 2, title: "Episode 2: The Algorithm's Gaze" },
+    { id: 3, title: "Episode 3: The Route" }
   ]
 }
 
