@@ -9,7 +9,12 @@ const state = {
   episodes: [
     { id: 1, title: "Episode 1: The New Hire" },
     { id: 2, title: "Episode 2: The Algorithm's Gaze" },
-    { id: 3, title: "Episode 3: The Route" }
+    { id: 3, title: "Episode 3: The Route" },
+    { id: 4, title: "Episode 4: The Audit" },
+    { id: 5, title: "Episode 5: Dead Letter" },
+    { id: 6, title: "Episode 6: The Strike" },
+    { id: 7, title: "Episode 7: Black Friday" },
+    { id: 8, title: "Episode 8: The Mandate (Season Finale)" }
   ]
 }
 
@@ -92,11 +97,26 @@ async function renderReader() {
     const data = await response.json()
 
     data.pages.forEach(page => {
+      const filename = typeof page === 'string' ? page : page.file
+      const caption = typeof page === 'object' ? page.caption : null
+
+      const wrapper = document.createElement('div')
+      wrapper.style.marginBottom = '0.5rem'
+
       const img = document.createElement('img')
-      img.src = `/comics/episode_${state.currentEpisode}/${page}`
+      img.src = `/comics/episode_${state.currentEpisode}/${filename}`
       img.className = 'comic-panel'
       img.loading = 'lazy'
-      container.appendChild(img)
+      wrapper.appendChild(img)
+
+      if (caption) {
+        const cap = document.createElement('p')
+        cap.textContent = caption
+        cap.style.cssText = 'text-align:center;color:#aaa;font-style:italic;font-size:0.9rem;padding:0.25rem 1rem;margin:0;'
+        wrapper.appendChild(cap)
+      }
+
+      container.appendChild(wrapper)
     })
 
     // Footer Nav
