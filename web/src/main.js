@@ -67,6 +67,19 @@ const EPISODE_DATA = {
       "04_override.jpg",
       "05_coordinates.jpg"
     ]
+  },
+  6: {
+    title: "EP.06 — THE RURAL FRONTIER",
+    endLine: "THE EVALUATION ZONE BREACHED",
+    endSub: "NRLCA TACTICS UNLOCKED",
+    pdfFile: "",
+    panels: [
+      "01_edge.jpg",
+      "02_ranger.jpg",
+      "03_sentinel.jpg",
+      "04_blitz.jpg",
+      "05_truce.jpg"
+    ]
   }
 }
 
@@ -109,6 +122,7 @@ const state = {
     { id: 3, title: "EP.03 — THE PIVOT DIMENSION", available: true },
     { id: 4, title: "EP.04 — THE CBA SHIELD", available: true },
     { id: 5, title: "EP.05 — DEAD LETTER DEEP-DIVE", available: true },
+    { id: 6, title: "EP.06 — THE RURAL FRONTIER", available: true },
   ],
   specials: [
     { id: 1, title: "SP.01 — ENLIST IN THE OIG", available: true },
@@ -277,7 +291,7 @@ flowchart TD
     Phase1 --> E3("EP.3: The Pivot Dimension"):::completed
     Phase2 --> E4("EP.4: The CBA Shield"):::completed
     Phase2 --> E5("EP.5: Dead Letter Void"):::completed
-    E5 --> E6("EP.6: The Rural Frontier"):::pending
+    E5 --> E6("EP.6: The Rural Frontier"):::completed
     E6 --> E7("EP.7: The 204b Parasite"):::pending
     E7 --> E8("EP.8: The Iron Lifters"):::pending
     E8 --> E9("EP.9: The All-Call Blizzard"):::pending
