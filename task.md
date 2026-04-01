@@ -3,11 +3,24 @@
 - [x] Create Workspace (`/home/neo/mailstorm`) <!-- id: -1 -->
 
 - [/] Define Universe & Lore <!-- id: 0 -->
-    - [ ] Document setting (The Workplace) <!-- id: 1 -->
+    - [x] Document setting (The Workplace) <!-- id: 1 -->
+        - [x] Style Guide: Liminal Brutalism <!-- id: 1d -->
+        - [x] Map Layer 1: The Sorting Floor <!-- id: 1a -->
+        - [x] Map Layer 2: The LLV Graveyard <!-- id: 1b -->
+        - [x] Map Layer 3: The Supervisor's Podium <!-- id: 1c -->
     - [ ] flesh out "DBZ elements" integration <!-- id: 2 -->
-    - [/] Define "Corporate Ki" & Power Systems <!-- id: 2a -->
-        - [ ] Establish RPG Classes (Ops, Mgmt, Union) <!-- id: 2a1 -->
-        - [ ] Rank Structure (Intern to CEO) <!-- id: 2a2 -->
+    - [x] Define "Corporate Ki" & Power Systems <!-- id: 2a -->
+        - [x] Bureau-Kinesis & The Stresses <!-- id: 2a0 -->
+        - [x] Establish RPG Classes (Ops, Mgmt, Union) <!-- id: 2a1 -->
+            - [x] Detail City Carrier (Tank) <!-- id: 2a1a -->
+            - [x] Detail Rural Carrier (Berserker) <!-- id: 2a1b -->
+            - [x] Detail Management Inquisitor (Controller) <!-- id: 2a1c -->
+        - [x] Rank Structure (CCA to CEO) <!-- id: 2a2 -->
+    - [x] The Union Contract (Paladin Oaths) <!-- id: 40c -->
+        - [x] Draft Article 8: The 12/60 Vow <!-- id: 40c1 -->
+        - [x] Draft Article 17: The Weingarten Rite <!-- id: 40c2 -->
+        - [x] Draft Article 16: The Shield of Just Cause <!-- id: 40c3 -->
+    - [x] The Bestiary (Route Hazards & Phantoms) <!-- id: 2d -->
     - [x] Integrate "Phantom Tray" Story <!-- id: 2b -->
     - [x] Integrate "Earbud/ADA" Story <!-- id: 2c -->
 - [ ] Character Development <!-- id: 3 -->
@@ -19,6 +32,14 @@
 - [/] Visual Development <!-- id: 9 -->
     - [/] define art style <!-- id: 10 -->
     - [x] generate title card <!-- id: 10b -->
+    - [/] generate "Abyssal Standard" concepts <!-- id: 10c -->
+        - [x] The Sorting Floor (Architecture Focus) <!-- id: 10c1 -->
+        - [x] Kip Baxter (Character Focus) <!-- id: 10c2 -->
+        - [/] Series 1: Production Sketches (Rough Drafts) <!-- id: 10c3 -->
+            - [ ] Kip's CCA Uniform <!-- id: 10c3a -->
+            - [ ] Stan's 64-Wraps & Coffee Mug <!-- id: 10c3b -->
+            - [ ] The MDD Scanner (Shadow State) <!-- id: 10c3c -->
+            - [ ] Chuck's Multi-Eyed Shadow <!-- id: 10c3d -->
     - [x] generate character sheets <!-- id: 11 -->
         - [x] Referencing Stan (Cynical) <!-- id: 11a -->
         - [x] Referencing Chuck (Human/Squirly) <!-- id: 11b -->
@@ -34,13 +55,13 @@
         - [x] Draft Scene 3: The Standoff (Chuck's Folly) <!-- id: 14d -->
         - [x] Draft Scene 4: The Phantom Tray (Climax) <!-- id: 14e -->
         - [x] Draft Scene 5: The Aftermath (Resolution) <!-- id: 14f -->
-    - [ ] Storyboard <!-- id: 15 -->
+    - [x] Storyboard (Manga Production Sheet) <!-- id: 15 -->
     - [x] Generate panels <!-- id: 16 -->
         - [x] Scene 1 Panels <!-- id: 16a -->
         - [x] Scene 2 & 3 Action Panels <!-- id: 16b -->
-        - [x] Scene 4 (Climax) Panels <!-- id: 16c -->
+        - [x] Scene 4 (Climax) Splash Panel <!-- id: 16c -->
         - [x] Scene 5 (Resolution) Panels <!-- id: 16d -->
-    - [ ] Lettering & assembly <!-- id: 17 -->
+    - [x] Lettering & assembly (Master Guide & Manifest) <!-- id: 17 -->
 - [x] Web Platform <!-- id: 18 -->
     - [x] Design comic viewer <!-- id: 19 -->
     - [x] Build website <!-- id: 20 -->
@@ -85,12 +106,16 @@
 # Phase 3: Season 1 Production (The Mandate)
 - [x] Season 1 Arc Architecture (Legacy Mode) <!-- id: 31 -->
 - [x] Episode 1: The New Hire (Retrofit) <!-- id: 34 -->
-    - [x] Scripting (Deep Lore) <!-- id: 34a -->
+    - [x] Scripting (Deep Lore Alignment) <!-- id: 34a -->
     - [x] Panel Regeneration (Liminal Brutalism) <!-- id: 34b -->
-    - [x] Final Polish (Remove old drawings) <!-- id: 34c -->
+    - [x] Final Lore Polish (Article 14 & Mana Sync) <!-- id: 34c -->
 - [x] Episode 2: The Algorithm's Gaze <!-- id: 35 -->
     - [x] Scripting <!-- id: 35a -->
     - [x] Panel Generation <!-- id: 35b -->
 - [x] Visual Overhaul (Berserk/Old School Style) <!-- id: 36 -->
     - [x] Episode 1 Regeneration (14 panels) <!-- id: 36a -->
     - [x] Episode 2 Regeneration (10 panels) <!-- id: 36b -->
+    - [x] Master Panel Template (Abyssal Chiaroscuro) <!-- id: 36c -->
+- [x] PDF Assembly (32-Page Abyssal Edition) <!-- id: 37 -->
+    - [x] Master PDF Manifest <!-- id: 37a -->
+    - [x] The Gallery of Spite (Evolution Bonus) <!-- id: 37b -->

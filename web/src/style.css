@@ -1,99 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap');
+
 :root {
-  --font-body: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  --color-bg: #1a1a1a;
-  --color-text: #ffffff;
-  --color-primary: #ff4500; /* Energetic Orange */
-  --color-accent: #00bfff; /* Electric Blue */
-  --color-dark: #0d0d0d;
+  --bg-abyss: #0a0a0a;
+  --bg-concrete: #111111;
+  --text-bone: #d4d0c8;
+  --text-dim: #555555;
+  --accent-hazard: #ff4f00;
+  --accent-mana: #c8a200;
+  --border-gutter: #1a1a1a;
+  --scanline-opacity: 0.03;
 }
 
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-body);
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background: var(--bg-abyss);
+  color: var(--text-bone);
+  font-family: 'Roboto Condensed', sans-serif;
   overflow-x: hidden;
 }
 
+/* Scanline CRT overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,var(--scanline-opacity)) 2px,
+    rgba(0,0,0,var(--scanline-opacity)) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
 #app {
+  min-height: 100vh;
+}
+
+/* === HOME === */
+.home-container {
   max-width: 800px;
   margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Header */
-header {
-  padding: 2rem;
+  padding: 4rem 2rem;
   text-align: center;
-  border-bottom: 2px solid var(--color-dark);
-  background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
 }
 
-h1 {
-  font-size: 3rem;
+.home-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 5rem;
+  font-weight: 700;
+  letter-spacing: 8px;
+  color: var(--accent-hazard);
+  text-shadow: 0 0 40px rgba(255,79,0,0.3);
+  margin-bottom: 0.5rem;
+}
+
+.home-subtitle {
+  font-size: 1rem;
+  letter-spacing: 6px;
+  color: var(--text-dim);
   text-transform: uppercase;
-  font-style: italic;
-  font-weight: 900;
-  margin: 0;
-  text-shadow: 0 0 10px var(--color-primary);
-  letter-spacing: -2px;
+  margin-bottom: 3rem;
 }
 
-/* Comic Viewer */
-.comic-viewer {
+.home-tagline {
+  max-width: 500px;
+  margin: 0 auto 3rem;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  color: var(--text-bone);
+  opacity: 0.8;
+}
+
+.episode-grid {
   display: flex;
   flex-direction: column;
-  gap: 0; /* Seamless vertical scroll */
-  background-color: var(--color-dark);
+  gap: 0.5rem;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.comic-panel {
-  width: 100%;
-  height: auto;
-  display: block;
+.ep-btn {
+  background: var(--bg-concrete);
+  border: 1px solid var(--border-gutter);
+  color: var(--text-bone);
+  padding: 1rem 1.5rem;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
 }
 
-/* Controls */
-.controls {
-  padding: 2rem;
+.ep-btn:hover {
+  background: var(--accent-hazard);
+  color: #000;
+  border-color: var(--accent-hazard);
+  transform: translateX(4px);
+}
+
+.ep-btn.locked {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.ep-btn.locked:hover {
+  background: var(--bg-concrete);
+  color: var(--text-bone);
+  border-color: var(--border-gutter);
+  transform: none;
+}
+
+.download-btn {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background: transparent;
+  border: 2px solid var(--accent-mana);
+  color: var(--accent-mana);
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.download-btn:hover {
+  background: var(--accent-mana);
+  color: #000;
+  box-shadow: 0 0 20px rgba(200,162,0,0.3);
+}
+
+/* === READER === */
+.reader-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-abyss);
+  border-bottom: 1px solid var(--border-gutter);
+  padding: 0.8rem 1.5rem;
   display: flex;
   justify-content: space-between;
-  background-color: var(--color-bg);
+  align-items: center;
 }
 
-button {
-  background-color: var(--color-primary);
-  color: var(--color-text);
-  border: none;
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
+.reader-header button {
+  background: transparent;
+  border: 1px solid var(--text-dim);
+  color: var(--text-bone);
+  padding: 0.4rem 1rem;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  transition: transform 0.1s;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px var(--color-primary);
+.reader-header button:hover {
+  border-color: var(--accent-hazard);
+  color: var(--accent-hazard);
 }
 
-/* Landing Page */
-.hero {
+.reader-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+  color: var(--accent-hazard);
+}
+
+.reader-panels {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.panel-wrapper {
+  margin-bottom: 4px;
+  background: var(--bg-abyss);
+  position: relative;
+  overflow: hidden;
+}
+
+.panel-wrapper img {
+  width: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.panel-wrapper img.loaded {
+  opacity: 1;
+}
+
+.reader-end {
   text-align: center;
   padding: 4rem 2rem;
+  border-top: 1px solid var(--border-gutter);
 }
 
-.hero img {
-  max-width: 100%;
-  animation: pulse 2s infinite;
+.reader-end h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2rem;
+  color: var(--accent-hazard);
+  letter-spacing: 4px;
+  margin-bottom: 1rem;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); filter: drop-shadow(0 0 5px var(--color-primary)); }
-  50% { transform: scale(1.02); filter: drop-shadow(0 0 20px var(--color-primary)); }
-  100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--color-primary)); }
+.reader-end p {
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  font-size: 0.9rem;
 }

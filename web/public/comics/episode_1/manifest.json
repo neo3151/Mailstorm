@@ -1,19 +1,38 @@
 {
-    "title": "Episode 1: The New Hire (Berserk Cut)",
-    "pages": [
-        "ep1_berserk_lobby_brutalism_1771118470037.png",
-        "ep1_berserk_stan_tired_1771118485867.png",
-        "ep1_berserk_heather_enter_1771118501018.png",
-        "ep1_berserk_the_pit_1771118515897.png",
-        "ep1_berserk_chuck_safety_1771120487116.png",
-        "ep1_berserk_heather_records_1771120505381.png",
-        "ep1_berserk_stan_senses_1771120519294.png",
-        "ep1_berserk_phantom_tray_1771118538308.png",
-        "ep1_berserk_tray_overflow_1771120548238.png",
-        "ep1_berserk_expediter_mode_1771118554424.png",
-        "ep1_berserk_aftermath_1771120565902.png",
-        "ep1_berserk_chuck_smug_1771118569481.png",
-        "ep1_berserk_heather_4k_1771120580989.png",
-        "ep1_berserk_group_shot_1771118585563.png"
-    ]
+  "episode": 1,
+  "title": "The Shadow Day",
+  "remaster": "Abyssal Standard",
+  "pages": [
+    {
+      "page": 1,
+      "panels": [
+        "abyssal_sorting_floor_concept_1775010362396.png"
+      ],
+      "lettering": "LETTERING_GUIDE_EP1.md#page-1"
+    },
+    {
+      "page": 2,
+      "panels": [],
+      "lettering": "LETTERING_GUIDE_EP1.md#page-2"
+    },
+    {
+      "page": 3,
+      "panels": [
+        "mdd_scanner_polished_line_art_no_text_symbols_only_1775012288739.png"
+      ],
+      "lettering": "LETTERING_GUIDE_EP1.md#page-3"
+    },
+    {
+      "page": 4,
+      "panels": [
+        "abyssal_episode_1_page_4_splash_stan_strike_1775012700676.png"
+      ],
+      "lettering": "LETTERING_GUIDE_EP1.md#page-4"
+    }
+  ],
+  "metadata": {
+    "style": "80/20 Chiaroscuro",
+    "reading_direction": "Right-to-Left",
+    "mana_type": "Golden Grievance"
+  }
 }

@@ -1,0 +1,16 @@
+{
+  "editor.wordWrap": "off",
+  "editor.tabSize": 4,
+  "markdown.extension.toc.updateOnSave": false,
+  "cSpell.words": [
+    "Mailstorm",
+    "Abyssal",
+    "Bureau",
+    "Kinesis",
+    "Redplum",
+    "LLV",
+    "MDD",
+    "DPS",
+    "Jutsu"
+  ]
+}
