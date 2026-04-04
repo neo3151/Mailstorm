@@ -106,6 +106,19 @@ const EPISODE_DATA = {
       "04_drift.jpg",
       "05_dock_slam.jpg"
     ]
+  },
+  9: {
+    title: "EP.09 — THE ALL-CALL BLIZZARD",
+    endLine: "FOUR FACTIONS UNITED BENEATH THE STORM",
+    endSub: "THE SOLIDARITY MANDATE HAS BEEN AWAKENED",
+    pdfFile: "Mailstorm_Ep9_Abyssal_Edition.pdf",
+    panels: [
+      "01_blizzard.jpg",
+      "02_iron_lifter_breach.jpg",
+      "03_clerk_furnace.jpg",
+      "04_rural_convoy.jpg",
+      "05_paladin_march.jpg"
+    ]
   }
 }
 
@@ -151,6 +164,7 @@ const state = {
     { id: 6, title: "EP.06 — THE RURAL FRONTIER", available: true },
     { id: 7, title: "EP.07 — THE 204B PARASITE", available: true },
     { id: 8, title: "EP.08 — THE IRON LIFTERS", available: true },
+    { id: 9, title: "EP.09 — THE ALL-CALL BLIZZARD", available: true },
   ],
   specials: [
     { id: 1, title: "SP.01 — ENLIST IN THE OIG", available: true },
@@ -322,7 +336,7 @@ flowchart TD
     E5 --> E6("EP.6: The Rural Frontier"):::completed
     E6 --> E7("EP.7: The 204b Parasite"):::completed
     E7 --> E8("EP.8: The Iron Lifters"):::completed
-    E8 --> E9("EP.9: The All-Call Blizzard"):::pending
+    E8 --> E9("EP.9: The All-Call Blizzard"):::completed
     E9 --> E10("EP.10: The Solidarity Mandate"):::threat
     
     E3 -.->|Sidequest| SP1("SP.01: Enlist in the OIG"):::special
