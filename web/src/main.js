@@ -119,6 +119,19 @@ const EPISODE_DATA = {
       "04_rural_convoy.jpg",
       "05_paladin_march.jpg"
     ]
+  },
+  10: {
+    title: "EP.10 — THE SOLIDARITY MANDATE",
+    endLine: "THE ALGORITHM IS SEVERED",
+    endSub: "SEASON ONE CONCLUDED",
+    pdfFile: "Mailstorm_Season_1_Finale_Abyssal_Edition.pdf",
+    panels: [
+      "01_the_avatar.jpg",
+      "02_four_guilds_assemble.jpg",
+      "03_the_invocation.jpg",
+      "04_the_solidarity_mandate.jpg",
+      "05_the_aftermath.jpg"
+    ]
   }
 }
 
@@ -178,6 +191,7 @@ const state = {
     { id: 7, title: "EP.07 — THE 204B PARASITE", available: true },
     { id: 8, title: "EP.08 — THE IRON LIFTERS", available: true },
     { id: 9, title: "EP.09 — THE ALL-CALL BLIZZARD", available: true },
+    { id: 10, title: "EP.10 — THE SOLIDARITY MANDATE (SEASON FINALE)", available: true },
   ],
   specials: [
     { id: 1, title: "SP.01 — ENLIST IN THE OIG", available: true },
@@ -350,7 +364,8 @@ flowchart TD
     E6 --> E7("EP.7: The 204b Parasite"):::completed
     E7 --> E8("EP.8: The Iron Lifters"):::completed
     E8 --> E9("EP.9: The All-Call Blizzard"):::completed
-    E9 --> E10("EP.10: The Solidarity Mandate"):::threat
+    E9 --> E10("EP.10: The Solidarity Mandate"):::completed
+    E10 -.-> S2("SEASON TWO: THE OIG"):::threat
     
     E3 -.->|Sidequest| SP1("SP.01: Enlist in the OIG"):::special
     E6 -.->|Sidequest| SP2("SP.02: Prime Day Massacre"):::special

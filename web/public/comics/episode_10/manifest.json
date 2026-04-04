@@ -1,11 +1,25 @@
 {
-  "title": "Episode 10: The Initiate (Raw Production Frames)",
-  "pages": [
-    { "file": "../../assets/raw_frames/episode_10/page_1.png", "caption": "Panel 1: The Title Card" },
-    { "file": "../../assets/raw_frames/episode_10/page_2.png", "caption": "Panel 2: The Trap" },
-    { "file": "../../assets/raw_frames/episode_10/page_3.png", "caption": "Panel 3: The Inquisition" },
-    { "file": "../../assets/raw_frames/episode_10/page_4.png", "caption": "Panel 4: The Savior" },
-    { "file": "../../assets/raw_frames/episode_10/page_5.png", "caption": "Panel 5: The Chariot" },
-    { "file": "../../assets/raw_frames/episode_10/page_6.png", "caption": "Panel 6: The Exit" }
-  ]
+    "title": "Season 1 Finale: The Solidarity Mandate",
+    "pages": [
+        {
+            "file": "01_the_avatar.jpg",
+            "caption": "The Algorithm descends. The localized infrastructure warps around its physical mass."
+        },
+        {
+            "file": "02_four_guilds_assemble.jpg",
+            "caption": "Forty years of division erased in a single moment."
+        },
+        {
+            "file": "03_the_invocation.jpg",
+            "caption": "Kip channels the combined grievance mana of the entire workforce."
+        },
+        {
+            "file": "04_the_solidarity_mandate.jpg",
+            "caption": "The Solidarity Mandate strikes the core. The Algorithm is temporarily severed."
+        },
+        {
+            "file": "05_the_aftermath.jpg",
+            "caption": "The facility breathes. But the victory triggers an automated escalation."
+        }
+    ]
 }
