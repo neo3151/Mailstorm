@@ -93,6 +93,19 @@ const EPISODE_DATA = {
       "04_metric_assault.jpg",
       "05_aftermath.jpg"
     ]
+  },
+  8: {
+    title: "EP.08 — THE IRON LIFTERS",
+    endLine: "THE DOCK SLAM SEALS THE BREACH",
+    endSub: "THE IRON LIFTERS HOLD THE LINE",
+    pdfFile: "Mailstorm_Ep8_Abyssal_Edition.pdf",
+    panels: [
+      "01_prime_tsunami.jpg",
+      "02_joust.jpg",
+      "03_bombardment.jpg",
+      "04_drift.jpg",
+      "05_dock_slam.jpg"
+    ]
   }
 }
 
@@ -137,6 +150,7 @@ const state = {
     { id: 5, title: "EP.05 — DEAD LETTER DEEP-DIVE", available: true },
     { id: 6, title: "EP.06 — THE RURAL FRONTIER", available: true },
     { id: 7, title: "EP.07 — THE 204B PARASITE", available: true },
+    { id: 8, title: "EP.08 — THE IRON LIFTERS", available: true },
   ],
   specials: [
     { id: 1, title: "SP.01 — ENLIST IN THE OIG", available: true },
@@ -307,7 +321,7 @@ flowchart TD
     Phase2 --> E5("EP.5: Dead Letter Void"):::completed
     E5 --> E6("EP.6: The Rural Frontier"):::completed
     E6 --> E7("EP.7: The 204b Parasite"):::completed
-    E7 --> E8("EP.8: The Iron Lifters"):::pending
+    E7 --> E8("EP.8: The Iron Lifters"):::completed
     E8 --> E9("EP.9: The All-Call Blizzard"):::pending
     E9 --> E10("EP.10: The Solidarity Mandate"):::threat
     
