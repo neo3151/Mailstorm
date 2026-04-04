@@ -1,15 +1,12 @@
 import os
 import glob
-import re
 from fpdf import FPDF
-from PIL import Image
 
 # Configuration
 LORE_DIR = r"C:\Users\neo31\Mailstorm\docs\lore"
 ARTIFACT_DIR = r"C:\Users\neo31\.gemini\antigravity\brain\02e7ce15-02d4-4e8a-be5c-eb8e8aeb461d"
 OUTPUT_FILE = r"C:\Users\neo31\Mailstorm\releases\The_Book_of_Mailstorm_Vol1.pdf"
 
-# Find latest images
 def get_latest(prefix):
     files = sorted(glob.glob(os.path.join(ARTIFACT_DIR, f"{prefix}_*.png")), reverse=True)
     return files[0] if files else None
@@ -34,11 +31,16 @@ PARTS = [
 ]
 
 class LorePDF(FPDF):
+    def header(self):
+        # Force every new page to have a dark aesthetic background
+        self.set_fill_color(15, 15, 15)
+        self.rect(0, 0, 210, 297, "F")
+        
     def footer(self):
         self.set_y(-15)
-        self.set_font("helvetica", "I", 8)
-        self.set_text_color(128, 128, 128)
-        self.cell(0, 10, f"Page {self.page_no()}", align="C")
+        self.set_font("helvetica", "B", 10)
+        self.set_text_color(100, 100, 100)
+        self.cell(0, 10, f"- {self.page_no()} -", new_x="LMARGIN", new_y="NEXT", align="C")
 
 def clean_text(text):
     text = text.replace("**", "").replace("__", "")
@@ -54,17 +56,27 @@ def draw_content(pdf, pass_num, toc_data):
     # TOC
     if pass_num == 2:
         pdf.add_page()
-        pdf.set_fill_color(20, 20, 20)
-        pdf.rect(0,0,210,297,"F")
         pdf.set_text_color(255, 100, 0)
-        pdf.set_font("helvetica", "B", 24)
-        pdf.cell(0, 20, "TABLE OF CONTENTS", ln=1, align="C")
+        pdf.set_font("helvetica", "B", 26)
+        pdf.cell(0, 24, "TABLE OF CONTENTS", new_x="LMARGIN", new_y="NEXT", align="C")
+        pdf.set_draw_color(255, 100, 0)
+        pdf.line(20, pdf.get_y(), 190, pdf.get_y())
         pdf.ln(10)
-        pdf.set_font("helvetica", "", 14)
+        
+        pdf.set_font("helvetica", "B", 14)
         pdf.set_text_color(220, 220, 220)
         for entry in toc_data:
-            pdf.cell(150, 10, entry["title"], ln=0)
-            pdf.cell(30, 10, str(entry["page"]), ln=1, align="R")
+            if "PART" in entry["title"]:
+                pdf.ln(4)
+                pdf.set_font("helvetica", "B", 16)
+                pdf.set_text_color(255, 140, 0)
+            else:
+                pdf.set_font("helvetica", "", 13)
+                pdf.set_text_color(200, 200, 200)
+
+            pdf.cell(150, 10, entry["title"])
+            pdf.cell(20, 10, str(entry["page"]), new_x="LMARGIN", new_y="NEXT", align="R")
+        pdf.ln(10)
 
     for part in PARTS:
         if pass_num == 1:
@@ -73,76 +85,90 @@ def draw_content(pdf, pass_num, toc_data):
         if part["img"] and pass_num == 2:
             pdf.add_page()
             pdf.image(part["img"], 0, 0, 210, 297)
-        else:
-            pdf.add_page()
-            pdf.set_fill_color(0, 0, 0)
-            pdf.rect(0,0,210,297,"F")
         
         pdf.add_page()
+        
+        # Helper to neatly draw text lines
+        def safe_draw(pdf, style, size, r, g, b, txt, line_height=7, indent=0):
+            pdf.set_font("helvetica", style, size)
+            pdf.set_text_color(r, g, b)
+            pdf.set_x(15 + indent) # Margin
+            
+            # Prevent crashes by truncating impossible widths
+            words = txt.split(' ')
+            safe_words = [w[:45] if len(w) > 45 else w for w in words]
+            safe_txt = ' '.join(safe_words)
+            
+            # W=180 handles page width properly with standard margins
+            try:
+                pdf.multi_cell(180 - indent, line_height, safe_txt)
+            except Exception:
+                pass
+
         for filename in part["files"]:
             filepath = os.path.join(LORE_DIR, filename)
             if not os.path.exists(filepath):
                 filepath = os.path.join(ARTIFACT_DIR, filename)
                 if not os.path.exists(filepath):
                     continue
-
-            pdf.set_fill_color(20, 20, 20)
-            pdf.rect(0,0,210,297,"F")
             
             with open(filepath, 'r', encoding='utf-8') as f:
                 lines = f.readlines()
             
-            pdf.set_text_color(220, 220, 220)
+            pdf.ln(8)
             for line in lines:
                 line = line.strip()
                 if not line:
-                    pdf.ln(4)
                     continue
 
                 if line.startswith("# "):
                     if pass_num == 1:
                         toc_data.append({"title": "    " + clean_text(line[2:]), "page": pdf.page_no()})
-                    pdf.set_font("helvetica", "B", 20)
-                    pdf.set_text_color(255, 140, 0)
-                    pdf.multi_cell(0, 10, clean_text(line[2:]))
-                    pdf.ln(4)
+                    pdf.ln(10)
+                    safe_draw(pdf, "B", 24, 255, 100, 0, clean_text(line[2:]), 12)
+                    pdf.set_draw_color(255, 100, 0)
+                    pdf.line(15, pdf.get_y(), 195, pdf.get_y())
+                    pdf.ln(6)
                 elif line.startswith("## "):
-                    pdf.set_font("helvetica", "B", 16)
-                    pdf.set_text_color(200, 200, 200)
-                    pdf.multi_cell(0, 8, clean_text(line[3:]))
+                    pdf.ln(8)
+                    safe_draw(pdf, "B", 18, 220, 220, 220, clean_text(line[3:]), 10)
+                    pdf.ln(4)
+                elif line.startswith("### "):
+                    pdf.ln(6)
+                    safe_draw(pdf, "B", 14, 255, 150, 50, clean_text(line[4:]), 8)
                     pdf.ln(2)
                 elif line.startswith("> [!"):
-                    pdf.set_font("helvetica", "I", 12)
-                    pdf.set_text_color(255, 50, 50)
-                    pdf.multi_cell(0, 6, "--- OIG CLASSIFIED FACT ---")
+                    pdf.ln(4)
+                    safe_draw(pdf, "B", 14, 255, 50, 50, "--- CLASSIFIED NOTICE ---", 8)
                 elif line.startswith(">"):
-                    pdf.set_font("helvetica", "I", 11)
-                    pdf.set_text_color(255, 200, 100)
-                    pdf.multi_cell(0, 6, clean_text(line[1:]))
+                    # Sidebar text
+                    safe_draw(pdf, "I", 12, 255, 150, 100, clean_text(line[1:]), 8, indent=10)
+                    pdf.ln(2)
+                elif line.startswith("* "):
+                    # Bullet point
+                    safe_draw(pdf, "", 12, 200, 200, 200, " • " + clean_text(line[2:]), 6, indent=5)
+                    pdf.ln(2)
                 else:
-                    pdf.set_font("helvetica", "", 11)
-                    pdf.set_text_color(180, 180, 180)
-                    pdf.multi_cell(0, 6, clean_text(line))
+                    # Regular paragraph text
+                    safe_draw(pdf, "", 12, 220, 220, 220, clean_text(line), 7)
+                    pdf.ln(3)
+                    
+            pdf.add_page() # Break after each markdown doc to keep it clean
 
 def assemble():
     print("Beginning Book of Mailstorm Pass 1 (TOC Calculation)...")
     pdf_dummy = LorePDF()
-    pdf_dummy.set_auto_page_break(auto=True, margin=15)
+    pdf_dummy.set_auto_page_break(auto=True, margin=20)
     toc_data = []
     draw_content(pdf_dummy, 1, toc_data)
     
-    offset = 2 # cover + toc page
+    offset = 2 
     for t in toc_data:
         t["page"] += offset
 
     print("Beginning Book of Mailstorm Pass 2 (Final Render)...")
     pdf_final = LorePDF()
-    pdf_final.set_auto_page_break(auto=True, margin=15)
-    
-    total = 20
-    for i in range(total):
-        bar = "[" + "█" * (i//2) + "░" * (10 - i//2) + f"] {int(i/total*100)}%"
-        print(f"{bar} Assembling PDF Layout...", end='\r')
+    pdf_final.set_auto_page_break(auto=True, margin=20)
     
     draw_content(pdf_final, 2, toc_data)
     
