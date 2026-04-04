@@ -80,6 +80,19 @@ const EPISODE_DATA = {
       "04_blitz.jpg",
       "05_truce.jpg"
     ]
+  },
+  7: {
+    title: "EP.07 — THE 204B PARASITE",
+    endLine: "THE SUPERVISOR'S METRICS WERE SHATTERED",
+    endSub: "THE FILIBUSTER HOLDS",
+    pdfFile: "Mailstorm_Ep7_Abyssal_Edition.pdf",
+    panels: [
+      "01_incubation.jpg",
+      "02_host_chosen.jpg",
+      "03_guest_star.jpg",
+      "04_metric_assault.jpg",
+      "05_aftermath.jpg"
+    ]
   }
 }
 
@@ -123,6 +136,7 @@ const state = {
     { id: 4, title: "EP.04 — THE CBA SHIELD", available: true },
     { id: 5, title: "EP.05 — DEAD LETTER DEEP-DIVE", available: true },
     { id: 6, title: "EP.06 — THE RURAL FRONTIER", available: true },
+    { id: 7, title: "EP.07 — THE 204B PARASITE", available: true },
   ],
   specials: [
     { id: 1, title: "SP.01 — ENLIST IN THE OIG", available: true },
@@ -292,7 +306,7 @@ flowchart TD
     Phase2 --> E4("EP.4: The CBA Shield"):::completed
     Phase2 --> E5("EP.5: Dead Letter Void"):::completed
     E5 --> E6("EP.6: The Rural Frontier"):::completed
-    E6 --> E7("EP.7: The 204b Parasite"):::pending
+    E6 --> E7("EP.7: The 204b Parasite"):::completed
     E7 --> E8("EP.8: The Iron Lifters"):::pending
     E8 --> E9("EP.9: The All-Call Blizzard"):::pending
     E9 --> E10("EP.10: The Solidarity Mandate"):::threat
