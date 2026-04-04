@@ -1,0 +1,25 @@
+{
+    "title": "SP.03: The Postmaster's Gala",
+    "pages": [
+        {
+            "file": "01_the_ascent.jpg",
+            "caption": "High above the frozen trenches, the air is perfectly climate-controlled."
+        },
+        {
+            "file": "02_the_ballroom.jpg",
+            "caption": "The District Managers gather to celebrate the quarterly metrics."
+        },
+        {
+            "file": "03_the_bishops.jpg",
+            "caption": "The Algorithm's clerics observe quietly. They do not drink. They only calculate."
+        },
+        {
+            "file": "04_the_toast.jpg",
+            "caption": "The toast of the 'Distilled Undeliverables.' The liquefied life essence of crushed route evaluations."
+        },
+        {
+            "file": "05_the_contract_shredder.jpg",
+            "caption": "The ritual completes. A thousand carrier evaluations are sacrificed to sustain their immortality."
+        }
+    ]
+}

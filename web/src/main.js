@@ -148,6 +148,19 @@ const SPECIAL_DATA = {
       "04_tubshield.jpg",
       "05_survivor.jpg"
     ]
+  },
+  3: {
+    title: "SP.03 — THE POSTMASTER'S GALA",
+    endLine: "THE RITUAL CONCLUDES",
+    endSub: "THE POSTAL DIMENSION BELONGS TO MANAGEMENT",
+    pdfFile: null,
+    panels: [
+      "01_the_ascent.jpg",
+      "02_the_ballroom.jpg",
+      "03_the_bishops.jpg",
+      "04_the_toast.jpg",
+      "05_the_contract_shredder.jpg"
+    ]
   }
 }
 
@@ -169,7 +182,7 @@ const state = {
   specials: [
     { id: 1, title: "SP.01 — ENLIST IN THE OIG", available: true },
     { id: 2, title: "SP.02 — PRIME DAY MASSACRE", available: true },
-    { id: 3, title: "SP.03 — THE POSTMASTER'S GALA", available: false }
+    { id: 3, title: "SP.03 — THE POSTMASTER'S GALA", available: true }
   ]
 }
 
@@ -341,7 +354,7 @@ flowchart TD
     
     E3 -.->|Sidequest| SP1("SP.01: Enlist in the OIG"):::special
     E6 -.->|Sidequest| SP2("SP.02: Prime Day Massacre"):::special
-    E9 -.->|Sidequest| SP3("SP.03: The Postmaster's Gala"):::special
+    E9 -.->|Sidequest| SP3("SP.03: The Postmaster's Gala"):::completed
   `;
   
   modal.innerHTML = `
