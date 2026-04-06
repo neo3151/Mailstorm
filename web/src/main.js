@@ -138,7 +138,13 @@ const EPISODE_DATA = {
     endLine: "THE SILENCE WAS NOT PEACE",
     endSub: "IT WAS AN INVESTIGATION",
     pdfFile: "",
-    panels: []
+    panels: [
+      "01_dark_screens.png",
+      "02_the_silence.png",
+      "03_false_peace.png",
+      "04_the_sedan.png",
+      "05_agent_vance.png"
+    ]
   },
   12: {
     title: "EP.12 — THE SUIT IN THE SHADOWS",
@@ -234,7 +240,7 @@ const state = {
     { id: 8, title: "EP.08 — THE IRON LIFTERS", available: true },
     { id: 9, title: "EP.09 — THE ALL-CALL BLIZZARD", available: true },
     { id: 10, title: "EP.10 — THE SOLIDARITY MANDATE (SEASON FINALE)", available: true },
-    { id: 11, title: "EP.11 — THE DEAD SCANNERS", available: false },
+    { id: 11, title: "EP.11 — THE DEAD SCANNERS", available: true },
     { id: 12, title: "EP.12 — THE SUIT IN THE SHADOWS", available: false },
     { id: 13, title: "EP.13 — THE INVESTIGATIVE INTERVIEW", available: false },
     { id: 14, title: "EP.14 — THE RIDE-ALONG REAPER", available: false },
