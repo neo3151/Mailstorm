@@ -209,6 +209,10 @@ function render() {
 function renderHome() {
   const el = document.createElement('div')
   el.className = 'home-container'
+  
+  const vol1Eps = state.episodes.slice(0, 5);
+  const vol2Eps = state.episodes.slice(5, 10);
+
   el.innerHTML = `
     <h1 class="home-title">MAILSTORM</h1>
     <p class="home-subtitle">THE CORPORATE BATTLE MANGA</p>
@@ -217,14 +221,45 @@ function renderHome() {
       Join <strong>Kip Baxter</strong> and <strong>Stan</strong> as they fight to survive
       the Table 2 Curse and the Algorithm's Gaze.
     </p>
+
+    <h2 style="color:var(--accent-orange, #ff4f00); text-align:center; font-family:'Bangers'; margin-top:2rem; letter-spacing: 2px;">[ VOLUME 1: THE OUTBREAK ]</h2>
     <div class="episode-grid">
-      ${state.episodes.map(ep => `
+      ${vol1Eps.map(ep => `
         <button class="ep-btn ${ep.available ? '' : 'locked'}"
           onclick="${ep.available ? `window.__read(${ep.id})` : ''}"
           ${ep.available ? '' : 'disabled'}>
           ${ep.title}${ep.available ? '' : ' — ARCHIVE SEALED'}
         </button>
       `).join('')}
+    </div>
+
+    <div class="promo-banner" style="background: linear-gradient(135deg, #001f3f 0%, #000 100%); border: 3px solid #00ffff; border-radius: 8px; padding: 2rem; margin: 3rem auto 2rem; max-width: 800px; text-align: center; box-shadow: 0 0 20px rgba(0,255,255,0.3); position: relative; overflow: hidden;">
+      <div style="position: absolute; top: 20px; right: -40px; background: #ff00ff; color: #fff; padding: 5px 50px; transform: rotate(45deg); font-family: 'Bangers'; letter-spacing: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); font-size: 1.2rem;">OUT NOW!</div>
+      <h2 style="color:#FFF; font-family:'Bangers'; font-size: 2.8rem; margin-top: 0; margin-bottom: 0.5rem; text-shadow: 2px 2px 5px #000;">MAILSTORM VOL. 2 IS HERE!</h2>
+      <h3 style="color:#00ffff; margin-top: 0; font-family: sans-serif; letter-spacing: 1px;">EPISODES 6 - 10: RETURN TO SENDER</h3>
+      <p style="color:#d4d0c8; font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem;">
+        The Rural Guild deploys the catastrophic <strong>All-Call Blizzard</strong>. The temperature drops, the algorithms freeze, and management's grip tightens. Can Kip and Stan rally the active guilds to form the legendary <strong>Solidarity Mandate</strong> before the postal dimension is completely iced over? 
+        <br><br><span style="color:#ff00ff; font-weight:bold;">Includes 5 explosive new battle archives and top secret Internal Affairs analytics!</span>
+      </p>
+      <button class="download-btn" onclick="window.__showVol2Modal()" style="background: #00ffff; color: #000; font-family:'Bangers'; font-size: 1.5rem; padding: 1rem 3rem; border: none; cursor: pointer; border-radius: 4px; box-shadow: 0 0 15px #00ffff, inset 0 0 10px rgba(255,255,255,0.5); transition: transform 0.2s;">
+        UNLOCK ARCHIVES ($4.99)
+      </button>
+    </div>
+
+    <h2 style="color:#00ffff; text-align:center; font-family:'Bangers'; margin-top:2rem; letter-spacing: 2px; text-shadow: 0 0 10px #00ffff;">[ VOLUME 2: THE BLIZZARD ]</h2>    <div class="episode-grid">
+      ${vol2Eps.map(ep => `
+        <button class="ep-btn ${ep.available ? '' : 'locked'}" style="border-color: #00ffff; color: #00ffff;"
+          onclick="${ep.available ? `window.__read(${ep.id})` : ''}"
+          ${ep.available ? '' : 'disabled'}>
+          ${ep.title}${ep.available ? '' : ' — ARCHIVE SEALED'}
+        </button>
+      `).join('')}
+    </div>
+
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;">
+      <button class="download-btn" onclick="window.__showVol2Modal()" style="border-color: #00ffff; color: #00ffff; font-weight: bold;">
+        [ DECLASSIFIED: VOL 2 FACTS & VISUALS ]
+      </button>
     </div>
 
     <h2 style="color:var(--accent-magenta, #ff00ff); text-align:center; font-family:'Bangers'; margin-top:2rem; letter-spacing: 2px;">[ SPECIAL ARCHIVES ]</h2>
@@ -247,7 +282,10 @@ function renderHome() {
         ⚲ READ LORE ENCYCLOPEDIA
       </a>
       <a href="/downloads/Mailstorm_Vol1_Storybook.pdf" class="download-btn" download style="border-color: #d4d0c8; color: #111; background-color: #d4d0c8; font-weight: bold; padding: 0.5rem 2rem;">
-        [ ↓ DOWNLOAD VOL. 1 STORYBOOK (EPS 1-5) ]
+        [ ↓ DOWNLOAD VOL. 1 STORYBOOK ]
+      </a>
+      <a href="#" class="download-btn" style="border-color: #00ffff; color: #111; background-color: #00ffff; font-weight: bold; padding: 0.5rem 2rem;">
+        [ ↓ DOWNLOAD VOL. 2 STORYBOOK ]
       </a>
     </div>
   `
@@ -405,5 +443,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+window.__showVol2Modal = () => {
+  const modal = document.getElementById('modal-container');
+  modal.innerHTML = `
+    <div style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);z-index:9999;display:flex;align-items:center;justify-content:center;padding:2rem;">
+      <div style="background:#111;border:2px solid #00ffff;padding:2rem;max-width:900px;width:100%;max-height:90vh;overflow-y:auto;position:relative;">
+        <button onclick="window.__closeModal()" style="position:absolute;top:10px;right:10px;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;">X</button>
+        <h2 style="color:#00ffff;font-family:'Bangers';margin-top:0;text-align:center;letter-spacing:2px;text-shadow: 0 0 10px #00ffff;">[ VOL. 2 DECLASSIFIED FILES ]</h2>
+        
+        <div style="display:flex;flex-direction:column;gap:2rem;margin-top:2rem;">
+          <div>
+            <h3 style="color:#FFF;border-left:4px solid #00ffff;padding-left:1rem;">THE FROZEN FRONTIER</h3>
+            <img src="/comics/vol2_extras/vol2_cover.png" style="width:100%;height:auto;border:1px solid #333;margin-top:1rem;" alt="Vol 2 Cover" />
+            <p style="color:#aaa;font-size:0.9rem;margin-top:1rem;">In Volume 2, the Rural Guild deploys the All-Call Blizzard, shifting the post office into a deep atmospheric freeze. Only the Solidarity Mandate can thaw the frozen algorithms of management.</p>
+          </div>
+          
+          <div>
+            <h3 style="color:#FFF;border-left:4px solid #00ffff;padding-left:1rem;">INTERNAL AFFAIRS: BATTLE ANALYTICS</h3>
+            <img src="/comics/vol2_extras/vol2_facts.png" style="width:100%;height:auto;border:1px solid #333;margin-top:1rem;" alt="Vol 2 Facts" />
+            <p style="color:#aaa;font-size:0.9rem;margin-top:1rem;">Top secret schematics revealed by the APWU Artificers detailing aura power spectrums and anomalous fluctuation events logged during the Prime Day Rift.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
 
 render()
