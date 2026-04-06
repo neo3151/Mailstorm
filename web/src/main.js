@@ -132,6 +132,48 @@ const EPISODE_DATA = {
       "04_the_solidarity_mandate.jpg",
       "05_the_aftermath.jpg"
     ]
+  },
+  11: {
+    title: "EP.11 — THE DEAD SCANNERS",
+    endLine: "THE SILENCE WAS NOT PEACE",
+    endSub: "IT WAS AN INVESTIGATION",
+    pdfFile: "",
+    panels: []
+  },
+  12: {
+    title: "EP.12 — THE SUIT IN THE SHADOWS",
+    endLine: "PURE POLICY CAN DEFEAT MAGIC",
+    endSub: "THE AUDIT BARRIER IS ERECTED",
+    pdfFile: "",
+    panels: []
+  },
+  13: {
+    title: "EP.13 — THE INVESTIGATIVE INTERVIEW",
+    endLine: "YOUR MANA IS FEDERAL PROPERTY",
+    endSub: "SURVIVE THE INTERROGATION",
+    pdfFile: "",
+    panels: []
+  },
+  14: {
+    title: "EP.14 — THE RIDE-ALONG REAPER",
+    endLine: "THE EVALUATOR'S GAZE HAS LOCKED ON",
+    endSub: "DELIVER FLAWLESSLY OR PERISH",
+    pdfFile: "",
+    panels: []
+  },
+  15: {
+    title: "EP.15 — THE AUTOMATION SCHISM",
+    endLine: "THE MACHINE DOES NOT CARE ABOUT SOLIDARITY",
+    endSub: "THE ALLIANCE CRACKS",
+    pdfFile: "",
+    panels: []
+  },
+  16: {
+    title: "EP.16 — THE AUDIT DIMENSION",
+    endLine: "WELCOME TO INTERNAL AFFAIRS",
+    endSub: "ACT ONE CONCLUDED",
+    pdfFile: "",
+    panels: []
   }
 }
 
@@ -192,6 +234,12 @@ const state = {
     { id: 8, title: "EP.08 — THE IRON LIFTERS", available: true },
     { id: 9, title: "EP.09 — THE ALL-CALL BLIZZARD", available: true },
     { id: 10, title: "EP.10 — THE SOLIDARITY MANDATE (SEASON FINALE)", available: true },
+    { id: 11, title: "EP.11 — THE DEAD SCANNERS", available: false },
+    { id: 12, title: "EP.12 — THE SUIT IN THE SHADOWS", available: false },
+    { id: 13, title: "EP.13 — THE INVESTIGATIVE INTERVIEW", available: false },
+    { id: 14, title: "EP.14 — THE RIDE-ALONG REAPER", available: false },
+    { id: 15, title: "EP.15 — THE AUTOMATION SCHISM", available: false },
+    { id: 16, title: "EP.16 — THE AUDIT DIMENSION", available: false }
   ],
   specials: [
     { id: 1, title: "SP.01 — ENLIST IN THE OIG", available: true },
@@ -212,6 +260,7 @@ function renderHome() {
   
   const vol1Eps = state.episodes.slice(0, 5);
   const vol2Eps = state.episodes.slice(5, 10);
+  const vol3Eps = state.episodes.slice(10, 16);
 
   el.innerHTML = `
     <h1 class="home-title">MAILSTORM</h1>
@@ -252,6 +301,17 @@ function renderHome() {
           onclick="${ep.available ? `window.__read(${ep.id})` : ''}"
           ${ep.available ? '' : 'disabled'}>
           ${ep.title}${ep.available ? '' : ' — ARCHIVE SEALED'}
+        </button>
+      `).join('')}
+    </div>
+
+    <h2 style="color:#d4af37; text-align:center; font-family:'Bangers'; margin-top:2rem; letter-spacing: 2px; text-shadow: 0 0 10px #d4af37;">[ VOLUME 3: THE INQUISITION (SEASON 2) ]</h2>
+    <div class="episode-grid">
+      ${vol3Eps.map(ep => `
+        <button class="ep-btn ${ep.available ? '' : 'locked'}" style="border-color: #d4af37; color: #d4af37;"
+          onclick="${ep.available ? `window.__read(${ep.id})` : ''}"
+          ${ep.available ? '' : 'disabled'}>
+          ${ep.title}${ep.available ? '' : ' — CLASSIFIED ARCHIVE'}
         </button>
       `).join('')}
     </div>
