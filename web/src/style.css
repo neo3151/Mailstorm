@@ -199,6 +199,30 @@ body::after {
   opacity: 1;
 }
 
+.panel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 1.5rem 2rem;
+  border-top: 2px solid var(--accent-hazard);
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  z-index: 10;
+}
+
+.panel-caption strong {
+  font-family: 'Oswald', sans-serif;
+  color: var(--accent-mana);
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  margin-right: 8px;
+}
+
 .reader-end {
   text-align: center;
   padding: 4rem 2rem;

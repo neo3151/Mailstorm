@@ -139,11 +139,26 @@ const EPISODE_DATA = {
     endSub: "IT WAS AN INVESTIGATION",
     pdfFile: "",
     panels: [
-      "01_dark_screens.png",
-      "02_the_silence.png",
-      "03_false_peace.png",
-      "04_the_sedan.png",
-      "05_agent_vance.png"
+      {
+        image: "01_dark_screens.png",
+        text: "<strong>KIP:</strong> Stan... the scanner is dead. It's completely dark. No 'Stationary Events.' No Algorithm tracking my heart rate. Is this... is the Table 2 Curse broken? Is this the end of the world?<br><br><strong>STAN:</strong> No, kid. The end of the world involves way more Amazon packages. This is worse. The Algorithm didn't crash. It was subpoenaed. Hold onto your ass."
+      },
+      {
+        image: "02_the_silence.png",
+        text: "<strong>NARRATOR:</strong> For 43 minutes, the Post Office was completely silent. The Machine Communion of the sorting floor had ceased. The 204b Parasites were nowhere to be seen."
+      },
+      {
+        image: "03_false_peace.png",
+        text: "<strong>HEATHER:</strong> Okay, this stationary event is literally mid. My 4K Aegis Shield is picking up zero management signals. Should I call the Union or just take an unauthorized nap?<br><br><strong>STAN:</strong> Don't get comfortable. If Management is quiet, they aren't retreating. They’re just reloading a bigger gun."
+      },
+      {
+        image: "04_the_sedan.png",
+        text: "<strong>NARRATOR:</strong> At exactly 17:00, the temperature on the loading dock dropped to absolute zero. The Federal Sedan phased through the gates, radiating an aura so cold and rigidly bureaucratic that it froze the concrete."
+      },
+      {
+        image: "05_agent_vance.png",
+        text: "<strong>AGENT VANCE:</strong> I am Special Agent Vance, Office of the Inspector General. Your 'Solidarity Mandate' anomaly has triggered a Level 5 Audit. Your mana is now federal property. Provide your badge, or I will sublimate your marrow."
+      }
     ]
   },
   12: {
@@ -379,15 +394,27 @@ function renderReader() {
 
   const panelsEl = document.createElement('div')
   panelsEl.className = 'reader-panels'
-  epData.panels.forEach(file => {
+  epData.panels.forEach(item => {
+    const isObj = typeof item === 'object';
+    const file = isObj ? item.image : item;
+    const text = isObj ? item.text : null;
+
     const wrapper = document.createElement('div')
     wrapper.className = 'panel-wrapper'
     const img = document.createElement('img')
     img.src = `/comics/${folder}/${file}`
-    img.alt = file.replace('.jpg','').replace(/_/g,' ')
+    img.alt = file.replace('.png','').replace('.jpg','').replace(/_/g,' ')
     img.loading = 'lazy'
     img.onload = () => img.classList.add('loaded')
     wrapper.appendChild(img)
+
+    if (text) {
+      const caption = document.createElement('div');
+      caption.className = 'panel-caption';
+      caption.innerHTML = text;
+      wrapper.appendChild(caption);
+    }
+
     panelsEl.appendChild(wrapper)
   })
   el.appendChild(panelsEl)
