@@ -681,7 +681,11 @@ const CONTINUITY_TIMELINE = [
   { id: 9, title: "EP.09 — THE ALL-CALL BLIZZARD", released: true, location: "The Loading Dock", milestone: "All guilds unite to survive the freezing of the Algorithm.", grievance: "None", relic: "Postal Beanie" },
   { id: 10, title: "EP.10 — THE SOLIDARITY MANDATE", released: true, location: "Carrier Cases", milestone: "The four guilds assemble to sever the localized Algorithm.", grievance: "Step 4 National Strike", relic: "Solidarity Mandate Key" },
   { id: 11, title: "EP.11 — THE DEAD SCANNERS", released: true, location: "The Loading Dock", milestone: "Silence falls on the post office as OIG Agent Vance arrives.", grievance: "None", relic: "Dark Scanner" },
-  { id: 12, title: "EP.12 — THE WEINGARTEN WARD", released: true, location: "Carrier Cases", milestone: "Barb uses the Weingarten Smite to blast Agent Vance's aura.", grievance: "Weingarten Rite Summon", relic: "Weingarten Smite" }
+  { id: 12, title: "EP.12 — THE WEINGARTEN WARD", released: true, location: "Carrier Cases", milestone: "Barb uses the Weingarten Smite to blast Agent Vance's aura.", grievance: "Weingarten Rite Summon", relic: "Weingarten Smite" },
+  { id: 13, title: "EP.13 — THE INVESTIGATIVE INTERVIEW", released: false, location: "The Supervisor's Podium", milestone: "Kip must survive Vance and Chuck's interrogation without cracking.", grievance: "Weingarten Rite Summon", relic: "Union Contract Shield" },
+  { id: 14, title: "EP.14 — THE RIDE-ALONG REAPER", released: false, location: "The LLV Graveyard", milestone: "Vance forces a street ride-along. Kip must deliver flawlessly under surveillance pressure.", grievance: "Article 14 Safety Shield", relic: "Orange Ward" },
+  { id: 15, title: "EP.15 — THE AUTOMATION SCHISM", released: false, location: "Carrier Cases", milestone: "Sorting machines go wild; Clerks (APWU) and Carriers clash over floor control.", grievance: "Machine Override", relic: "DBCS Sorting Machine" },
+  { id: 16, title: "EP.16 — THE AUDIT DIMENSION", released: false, location: "Front Lobby", milestone: "Vance pulls Kip into the Audit Dimension; Stan steps in to trigger the Founding Mandate.", grievance: "Step 4 National Strike", relic: "Solidarity Mandate Key" }
 ];
 
 const FACILITY_MAP = {
@@ -837,10 +841,22 @@ function renderTimelineTab(pane) {
     const item = document.createElement('div');
     item.className = 'timeline-item';
     
+    // USPS package tracking scan statuses
+    let scanText = "IN TRANSIT";
+    let badgeClass = "inactive";
+    
+    if (ep.released) {
+      scanText = "DELIVERED";
+      badgeClass = "active";
+    } else if (ep.id === 13) {
+      scanText = "OUT FOR DELIVERY";
+      badgeClass = "warning";
+    }
+    
     item.innerHTML = `
       <div class="timeline-item-header">
         <div class="timeline-ep-title">${ep.title}</div>
-        <div class="timeline-ep-status released">ACTIVE CONTRACT</div>
+        <span class="status-badge ${badgeClass}">${scanText}</span>
       </div>
       <div style="font-size: 0.85rem; margin-bottom: 0.8rem; color:#aaa;">
         <strong>Facility Location:</strong> <span style="color:#ffb000;">${ep.location}</span>
@@ -945,7 +961,11 @@ function updateMapTokens(epId) {
     9: { stan: "The Loading Dock", kip: "The Loading Dock", heather: "The Loading Dock", barb: "The Loading Dock", chuck: "The Supervisor's Podium" },
     10: { stan: "Carrier Cases", kip: "Carrier Cases", barb: "Carrier Cases", heather: "Carrier Cases", chuck: "The Supervisor's Podium", sparky: "Carrier Cases" },
     11: { stan: "The Loading Dock", kip: "The Loading Dock", heather: "The Loading Dock", chuck: "The Supervisor's Podium" },
-    12: { stan: "Carrier Cases", kip: "Carrier Cases", barb: "Carrier Cases", chuck: "The Supervisor's Podium" }
+    12: { stan: "Carrier Cases", kip: "Carrier Cases", barb: "Carrier Cases", chuck: "The Supervisor's Podium" },
+    13: { chuck: "The Supervisor's Podium", kip: "The Supervisor's Podium", stan: "Carrier Cases" },
+    14: { kip: "The LLV Graveyard", chuck: "The Supervisor's Podium", stan: "Carrier Cases" },
+    15: { stan: "Carrier Cases", kip: "Carrier Cases", sparky: "Carrier Cases" },
+    16: { kip: "Front Lobby", stan: "Front Lobby", chuck: "The Supervisor's Podium", barb: "Front Lobby" }
   };
   
   const mapping = positions[epId] || {};
