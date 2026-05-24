@@ -1,0 +1,31 @@
+{
+    "title": "Episode 12: The Weingarten Ward",
+    "id": "episode_12",
+    "panels": [
+        {
+            "id": 1,
+            "src": "01_vance_bypass.png",
+            "caption": "Agent Vance arrives. The ambient temperature plummets as his terrifying, perfectly sterile grid aura immediately flattens Chuck's shadowy dominance."
+        },
+        {
+            "id": 2,
+            "src": "02_target.png",
+            "caption": "Bypassing the veterans entirely, Vance targets the weakest link: Kip Baxter. The 'Investigative Interview' begins without warning or union representation."
+        },
+        {
+            "id": 3,
+            "src": "03_logic_loop.png",
+            "caption": "Kip is caught in a 'Logic-Loop.' His yellow anxiety aura is brutally crushed under a suffocating cage of pure mathematical efficiency."
+        },
+        {
+            "id": 4,
+            "src": "04_the_slam.png",
+            "caption": "A thunderous impact echoes across the sorting floor. The Union Paladin has arrived."
+        },
+        {
+            "id": 5,
+            "src": "05_weingarten_smite.png",
+            "caption": "THE WEINGARTEN SMITE! Barb slams the Master Contract down. An explosion of blinding Contractual Logic erupts across the Sorting Floor, physically blasting the OIG Agent's aura backward!"
+        }
+    ]
+}

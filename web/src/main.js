@@ -162,11 +162,32 @@ const EPISODE_DATA = {
     ]
   },
   12: {
-    title: "EP.12 — THE SUIT IN THE SHADOWS",
+    title: "EP.12 — THE WEINGARTEN WARD",
     endLine: "PURE POLICY CAN DEFEAT MAGIC",
     endSub: "THE AUDIT BARRIER IS ERECTED",
     pdfFile: "",
-    panels: []
+    panels: [
+      {
+        image: "01_vance_bypass.png",
+        text: "Agent Vance arrives. The ambient temperature plummets as his terrifying, perfectly sterile grid aura immediately flattens Chuck's shadowy dominance."
+      },
+      {
+        image: "02_target.png",
+        text: "Bypassing the veterans entirely, Vance targets the weakest link: Kip Baxter. The 'Investigative Interview' begins without warning or union representation."
+      },
+      {
+        image: "03_logic_loop.png",
+        text: "Kip is caught in a 'Logic-Loop.' His yellow anxiety aura is brutally crushed under a suffocating cage of pure mathematical efficiency."
+      },
+      {
+        image: "04_the_slam.png",
+        text: "A thunderous impact echoes across the sorting floor. The Union Paladin has arrived."
+      },
+      {
+        image: "05_weingarten_smite.png",
+        text: "THE WEINGARTEN SMITE! Barb slams the Master Contract down. An explosion of blinding Contractual Logic erupts across the Sorting Floor, physically blasting the OIG Agent's aura backward!"
+      }
+    ]
   },
   13: {
     title: "EP.13 — THE INVESTIGATIVE INTERVIEW",
@@ -256,7 +277,7 @@ const state = {
     { id: 9, title: "EP.09 — THE ALL-CALL BLIZZARD", available: true },
     { id: 10, title: "EP.10 — THE SOLIDARITY MANDATE (SEASON FINALE)", available: true },
     { id: 11, title: "EP.11 — THE DEAD SCANNERS", available: true },
-    { id: 12, title: "EP.12 — THE SUIT IN THE SHADOWS", available: false },
+    { id: 12, title: "EP.12 — THE WEINGARTEN WARD", available: true },
     { id: 13, title: "EP.13 — THE INVESTIGATIVE INTERVIEW", available: false },
     { id: 14, title: "EP.14 — THE RIDE-ALONG REAPER", available: false },
     { id: 15, title: "EP.15 — THE AUTOMATION SCHISM", available: false },
