@@ -294,6 +294,7 @@ function render() {
   app.innerHTML = ''
   if (state.view === 'home') renderHome()
   else if (state.view === 'reader') renderReader()
+  else if (state.view === 'continuity') renderContinuity()
 }
 
 function renderHome() {
@@ -378,6 +379,7 @@ function renderHome() {
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem;margin-bottom:1rem;">
       <button class="download-btn" onclick="window.__showFactions()" style="border-color: #555;">[ ACTIVE GUILDS ]</button>
       <button class="download-btn" onclick="window.__showRoadmap()" style="border-color: #555;">[ PROJECT ROADMAP ]</button>
+      <button class="download-btn" onclick="window.__openContinuity()" style="border-color: #33ff33; color: #33ff33;">[ ⚲ OPEN CONTINUITY BIBLE ]</button>
     </div>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;">
       <a href="/encyclopedia.html" class="download-btn" target="_blank" style="border-color: var(--accent-hazard); color: var(--accent-hazard);">
@@ -394,6 +396,7 @@ function renderHome() {
   app.appendChild(el)
   window.__read = (id) => { state.currentEp = id; state.currentSpecial = null; state.view = 'reader'; render() }
   window.__readSpecial = (id) => { state.currentSpecial = id; state.currentEp = null; state.view = 'reader'; render() }
+  window.__openContinuity = () => { state.view = 'continuity'; state.activeConsoleTab = state.activeConsoleTab || 'chars'; render() }
 }
 
 function renderReader() {
@@ -583,5 +586,562 @@ window.__showVol2Modal = () => {
     </div>
   `;
 }
+
+// === CONTINUITY DATA ===
+const CONTINUITY_CHARS = {
+  stan: {
+    name: "Stan",
+    class: "City Carrier (Level 42 Regular)",
+    alignment: "Lawful Apathetic",
+    statName: "Street Efficiency",
+    statVal: 95,
+    mana: 80,
+    specialVal: 10,
+    specialLabel: "Rookie Tolerance",
+    buffs: ["Caffeine Fortress", "Unbreakable Stride"],
+    debuffs: ["Lower Back Strain"],
+    relics: "Stained Mug, Heavy Satchel"
+  },
+  kip: {
+    name: "Kip Baxter",
+    class: "City Carrier Assistant (Level 5)",
+    alignment: "Anxious Ascendant",
+    statName: "Anxiety Margin",
+    statVal: 85,
+    mana: 20,
+    specialVal: 90,
+    specialLabel: "Algorithm Panic",
+    buffs: ["Youth Agility"],
+    debuffs: ["Table 2 Curse (Bone-Marrow Burn)"],
+    relics: "Green Tag Bag"
+  },
+  barb: {
+    name: "Barb",
+    class: "Shop Steward (Level 55 Union Paladin)",
+    alignment: "Contractual Enforcer",
+    statName: "Defense Rating",
+    statVal: 98,
+    mana: 90,
+    specialVal: 95,
+    specialLabel: "Grievance Artillery",
+    buffs: ["Article 16 Shield", "Unbreakable Union Contract"],
+    debuffs: ["Excessive Meetings"],
+    relics: "Master Contract, Steward Gavel"
+  },
+  chuck: {
+    name: "Chuck",
+    class: "Supervisor (Level 45 Controller)",
+    alignment: "Petty Demonic",
+    statName: "Audacity Level",
+    statVal: 80,
+    mana: 15,
+    specialVal: 85,
+    specialLabel: "Algorithm Vigilance",
+    buffs: ["Vance's Backing"],
+    debuffs: ["Incompetence Loop", "Lost 1767 Forms"],
+    relics: "MDD Scanner, Clip-On Badge"
+  },
+  heather: {
+    name: "Heather",
+    class: "Rural Carrier (Level 12 Berserker)",
+    alignment: "Chaotic Apathetic",
+    statName: "Velocity Metric",
+    statVal: 90,
+    mana: 40,
+    specialVal: 95,
+    specialLabel: "Gen Z Disdain",
+    buffs: ["Apathy Shield", "Evaluation Blitz"],
+    debuffs: ["Glued to Screen"],
+    relics: "Subaru Outback, 4K Aegis Satchel"
+  },
+  sparky: {
+    name: "Sparky",
+    class: "Maintenance Tech (Level 38 Artificer)",
+    alignment: "Support Wildcard",
+    statName: "Repair Spite",
+    statVal: 85,
+    mana: 50,
+    specialVal: 75,
+    specialLabel: "Sober Withdrawal Rage",
+    buffs: ["Technical Recall", "Tool Mastery"],
+    debuffs: ["Severe Nicotine Deprivation"],
+    relics: "Hydraulic Jack, Lock Wrench"
+  }
+};
+
+const CONTINUITY_TIMELINE = [
+  { id: 1, title: "EP.01 — THE SHADOW DAY", released: true, location: "The Sorting Floor", milestone: "Kip gets hired; Stan performs the Shadow Day ritual.", grievance: "None", relic: "Stan's Stained Mug" },
+  { id: 2, title: "EP.02 — TABLE 2 BLOODLINE", released: true, location: "The Sorting Floor", milestone: "Kip experiences the Table 2 Curse (Bone-Marrow Burn).", grievance: "None", relic: "Green Tag Bag" },
+  { id: 3, title: "EP.03 — THE PIVOT DIMENSION", released: true, location: "The LLV Graveyard", milestone: "Kip and Stan enter the time-dilated Pivot Dimension.", grievance: "None", relic: "64-Wraps" },
+  { id: 4, title: "EP.04 — THE CBA SHIELD", released: true, location: "The Sorting Floor", milestone: "Union Steward Barb defends carriers from Chuck's scanner sweeps.", grievance: "Article 8 Vow", relic: "Master Contract" },
+  { id: 5, title: "EP.05 — DEAD LETTER DEEP-DIVE", released: true, location: "The Sorting Floor", milestone: "Descent into the Dead Letter Office (DLO) to find Benjamin Franklin's ghost.", grievance: "Article 16 Shield", relic: "Golden Arrow Key" },
+  { id: 6, title: "EP.06 — THE RURAL FRONTIER", released: true, location: "The LLV Graveyard", milestone: "Alliance with Heather and the Rural Carrier rangers.", grievance: "None", relic: "RHD Subaru Outback" },
+  { id: 7, title: "EP.07 — THE 204B PARASITE", released: true, location: "The Supervisor's Podium", milestone: "A 204b tries to infect the carriers but is rejected.", grievance: "Weingarten Rite", relic: "None" },
+  { id: 8, title: "EP.08 — THE IRON LIFTERS", released: true, location: "The Loading Dock", milestone: "Mail Handlers defend the dock during the Siege of Tour 3.", grievance: "None", relic: "Tub Shield" },
+  { id: 9, title: "EP.09 — THE ALL-CALL BLIZZARD", released: true, location: "The Loading Dock", milestone: "All guilds unite to survive the freezing of the Algorithm.", grievance: "None", relic: "Postal Beanie" },
+  { id: 10, title: "EP.10 — THE SOLIDARITY MANDATE", released: true, location: "The Sorting Floor", milestone: "The four guilds assemble to sever the localized Algorithm.", grievance: "Step 4 National Strike", relic: "Solidarity Mandate Key" },
+  { id: 11, title: "EP.11 — THE DEAD SCANNERS", released: true, location: "The Loading Dock", milestone: "Silence falls on the post office as OIG Agent Vance arrives.", grievance: "None", relic: "Dark Scanner" },
+  { id: 12, title: "EP.12 — THE WEINGARTEN WARD", released: true, location: "The Sorting Floor", milestone: "Barb uses the Weingarten Smite to blast Agent Vance's aura.", grievance: "Weingarten Rite Summon", relic: "Weingarten Smite" }
+];
+
+const FACILITY_MAP = {
+  "Front Lobby": { x: "15%", y: "20%" },
+  "The Sorting Floor": { x: "50%", y: "40%" },
+  "The Supervisor's Podium": { x: "80%", y: "25%" },
+  "The Loading Dock": { x: "50%", y: "75%" },
+  "The LLV Graveyard": { x: "15%", y: "80%" },
+  "The Breakroom": { x: "85%", y: "75%" }
+};
+
+const LORE_VIOLATIONS = [
+  { term: "vape", warning: "[SOBRIETY LOG WARNING] Ensure Stan stays clean. Standard sobriety metrics are reset to Day 0 if a vape/hash is purchased." },
+  { term: "marijuana", warning: "[SOBRIETY LOG WARNING] Ensure Stan stays clean. Standard sobriety metrics are reset to Day 0 if a vape/hash is purchased." },
+  { term: "hash", warning: "[SOBRIETY LOG WARNING] Ensure Stan stays clean. Standard sobriety metrics are reset to Day 0 if a vape/hash is purchased." },
+  { speaker: "KIP", term: "8 & skate", warning: "[LORE CONTRADICTION] Kip (CCA) cannot perform the 8 & Skate teleportation jutsu without Career status. Only Level 11+ Regulars can cast this spell." },
+  { speaker: "KIP", term: "eight and skate", warning: "[LORE CONTRADICTION] Kip (CCA) cannot perform the 8 & Skate teleportation jutsu without Career status. Only Level 11+ Regulars can cast this spell." },
+  { speaker: "STAN", term: "run", warning: "[CHARACTER ANOMALY] Stan's Lawful Apathetic alignment prevents him from running or rushing. Maintain the Unbreakable Stride passive." },
+  { speaker: "STAN", term: "rushed", warning: "[CHARACTER ANOMALY] Stan's Lawful Apathetic alignment prevents him from running or rushing. Maintain the Unbreakable Stride passive." },
+  { speaker: "STAN", term: "sprinted", warning: "[CHARACTER ANOMALY] Stan's Lawful Apathetic alignment prevents him from running or rushing. Maintain the Unbreakable Stride passive." },
+  { term: "investigation", require: "Weingarten", warning: "[UNION VIOLATION WARNING] Disciplinary interviews must trigger the Weingarten Rite. A Shop Steward must be summoned." },
+  { term: "disciplinary", require: "Weingarten", warning: "[UNION VIOLATION WARNING] Disciplinary interviews must trigger the Weingarten Rite. A Shop Steward must be summoned." }
+];
+
+function renderContinuity() {
+  app.innerHTML = '';
+  
+  const container = document.createElement('div');
+  container.className = 'continuity-container';
+  
+  container.innerHTML = `
+    <div class="console-header">
+      <div>
+        <div class="console-title">ABYSSAL CENTRAL MAINFRAME // CONTINUITY BIBLE</div>
+        <div class="console-subtitle">SYSTEM STATUS: OPERATIONAL // DIRECTIVES UNCOMPROMISED</div>
+      </div>
+      <button class="download-btn" onclick="window.__closeContinuity()" style="margin:0; border-color:#888; color:#888; padding: 0.4rem 1.5rem; font-size: 0.8rem;">← BACK TO PORTAL</button>
+    </div>
+    <div class="console-body">
+      <div class="console-sidebar">
+        <button class="console-tab-btn ${state.activeConsoleTab === 'chars' ? 'active' : ''}" onclick="window.__setTab('chars')">[ CHARACTER MATRIX ]</button>
+        <button class="console-tab-btn ${state.activeConsoleTab === 'timeline' ? 'active' : ''}" onclick="window.__setTab('timeline')">[ EPISODE LEDGER ]</button>
+        <button class="console-tab-btn ${state.activeConsoleTab === 'map' ? 'active' : ''}" onclick="window.__setTab('map')">[ METRO HUB MAP ]</button>
+        <button class="console-tab-btn ${state.activeConsoleTab === 'analyzer' ? 'active' : ''}" onclick="window.__setTab('analyzer')">[ SCRIPT AUDITOR ]</button>
+      </div>
+      <div class="console-main-pane" id="console-pane"></div>
+    </div>
+  `;
+  
+  app.appendChild(container);
+  
+  // Render active pane content
+  const pane = document.getElementById('console-pane');
+  if (state.activeConsoleTab === 'chars') renderCharTab(pane);
+  else if (state.activeConsoleTab === 'timeline') renderTimelineTab(pane);
+  else if (state.activeConsoleTab === 'map') renderMapTab(pane);
+  else if (state.activeConsoleTab === 'analyzer') renderAnalyzerTab(pane);
+  
+  window.__setTab = (tab) => {
+    state.activeConsoleTab = tab;
+    renderContinuity();
+  };
+}
+
+function renderCharTab(pane) {
+  pane.innerHTML = '';
+  const grid = document.createElement('div');
+  grid.className = 'character-matrix';
+  
+  Object.keys(CONTINUITY_CHARS).forEach(key => {
+    const char = CONTINUITY_CHARS[key];
+    const card = document.createElement('div');
+    card.className = 'char-card';
+    
+    card.innerHTML = `
+      <div class="char-card-header">
+        <div class="char-name">${char.name}</div>
+        <div class="char-class">${char.class}</div>
+      </div>
+      <div style="font-size:0.8rem;color:#888;margin-bottom:1rem;">
+        Alignment: <span style="color:#ffb000;">${char.alignment}</span>
+      </div>
+      
+      <div class="char-stat-row">
+        <div class="char-stat-label">
+          <span>${char.statName}</span>
+          <span id="${key}-stat-val">${char.statVal}%</span>
+        </div>
+        <div class="char-stat-bar-container">
+          <div class="char-stat-bar" id="${key}-stat-bar" style="width: ${char.statVal}%;"></div>
+        </div>
+        <div class="char-slider-label">
+          <input type="range" min="0" max="100" class="char-slider" value="${char.statVal}" oninput="window.__updateCharStat('${key}', this.value)">
+        </div>
+      </div>
+      
+      <div class="char-stat-row">
+        <div class="char-stat-label">
+          <span>Grievance Mana</span>
+          <span id="${key}-mana-val">${char.mana} / 100</span>
+        </div>
+        <div class="char-stat-bar-container">
+          <div class="char-stat-bar mana" id="${key}-mana-bar" style="width: ${char.mana}%;"></div>
+        </div>
+        <div class="char-slider-label">
+          <input type="range" min="0" max="100" class="char-slider" value="${char.mana}" oninput="window.__updateCharMana('${key}', this.value)">
+        </div>
+      </div>
+      
+      <div style="font-size: 0.8rem; margin-top: 1rem; border-top: 1px solid #222; padding-top: 0.5rem;">
+        <strong>Relics:</strong> <span style="color:#aaa;">${char.relics}</span>
+      </div>
+      
+      <div style="font-size: 0.8rem; margin-top: 0.5rem;">
+        <strong>Active Buffs:</strong> 
+        ${char.buffs.map(b => `<span class="status-badge active" style="margin-right:4px; font-size: 0.65rem;">${b}</span>`).join('')}
+      </div>
+      
+      <div style="font-size: 0.8rem; margin-top: 0.5rem;">
+        <strong>Active Debuffs:</strong> 
+        ${char.debuffs.map(d => `<span class="status-badge inactive" style="margin-right:4px; font-size: 0.65rem;">${d}</span>`).join('')}
+      </div>
+    `;
+    
+    grid.appendChild(card);
+  });
+  
+  pane.appendChild(grid);
+  
+  window.__updateCharStat = (key, val) => {
+    CONTINUITY_CHARS[key].statVal = val;
+    document.getElementById(`${key}-stat-val`).innerText = val + '%';
+    document.getElementById(`${key}-stat-bar`).style.width = val + '%';
+  };
+  
+  window.__updateCharMana = (key, val) => {
+    CONTINUITY_CHARS[key].mana = val;
+    document.getElementById(`${key}-mana-val`).innerText = val + ' / 100';
+    document.getElementById(`${key}-mana-bar`).style.width = val + '%';
+  };
+}
+
+function renderTimelineTab(pane) {
+  pane.innerHTML = '';
+  const ledger = document.createElement('div');
+  ledger.className = 'timeline-ledger';
+  
+  CONTINUITY_TIMELINE.forEach(ep => {
+    const item = document.createElement('div');
+    item.className = 'timeline-item';
+    
+    item.innerHTML = `
+      <div class="timeline-item-header">
+        <div class="timeline-ep-title">${ep.title}</div>
+        <div class="timeline-ep-status released">ACTIVE CONTRACT</div>
+      </div>
+      <div style="font-size: 0.85rem; margin-bottom: 0.8rem; color:#aaa;">
+        <strong>Facility Location:</strong> <span style="color:#ffb000;">${ep.location}</span>
+      </div>
+      <div style="font-size: 0.9rem; line-height: 1.5; color:#eee; margin-bottom: 1rem;">
+        <strong>Plot Milestone:</strong> ${ep.milestone}
+      </div>
+      <div class="ledger-rules-grid">
+        <div class="ledger-rule-box">
+          <h4>Union Contract Clause invoked</h4>
+          <p>${ep.grievance}</p>
+        </div>
+        <div class="ledger-rule-box">
+          <h4>Active Relic Introduced</h4>
+          <p>${ep.relic}</p>
+        </div>
+      </div>
+    `;
+    
+    ledger.appendChild(item);
+  });
+  
+  pane.appendChild(ledger);
+}
+
+function renderMapTab(pane) {
+  pane.innerHTML = '';
+  
+  const container = document.createElement('div');
+  container.className = 'map-container';
+  
+  container.innerHTML = `
+    <div class="map-controls">
+      <h3 style="margin-top:0; color:#fff; font-size:1.1rem; border-bottom:1px solid #222; padding-bottom: 0.5rem;">LOCATE EPISODE</h3>
+      <select id="map-episode-select" style="background:#111; border:1px solid #333; color:#33ff33; padding: 0.8rem; font-family:monospace; width:100%; cursor:pointer;">
+        ${CONTINUITY_TIMELINE.map(ep => `<option value="${ep.id}">${ep.title}</option>`).join('')}
+      </select>
+      <div style="font-size:0.8rem; color:#666; margin-top:1rem; line-height:1.4;">
+        Observe how characters move through the non-Euclidean coordinates of Metro Hub South as the plot nodes progress.
+      </div>
+    </div>
+    <div class="map-viewport" id="map-viewport">
+      <!-- Retro grid blueprint map -->
+      <svg id="blueprint-svg" width="100%" height="450px" style="border:1px solid #222; background: #080808;">
+        <!-- Grid pattern -->
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#111" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+        
+        <!-- Blueprint walls -->
+        <rect x="5%" y="10%" width="90%" height="80%" fill="none" stroke="#222" stroke-width="2" stroke-dasharray="5 5"/>
+        <line x1="40%" y1="10%" x2="40%" y2="90%" stroke="#222" stroke-width="1.5" stroke-dasharray="5 5" />
+        <line x1="5%" y1="60%" x2="95%" y2="60%" stroke="#222" stroke-width="1.5" stroke-dasharray="5 5" />
+        
+        <!-- Zone text labels -->
+        <text x="22.5%" y="35%" fill="#444" font-size="12px" text-anchor="middle" font-family="monospace">FRONT LOBBY</text>
+        <text x="22.5%" y="75%" fill="#444" font-size="12px" text-anchor="middle" font-family="monospace">LLV GRAVEYARD</text>
+        <text x="67.5%" y="42%" fill="#444" font-size="12px" text-anchor="middle" font-family="monospace">THE SORTING FLOOR</text>
+        <text x="80%" y="15%" fill="#444" font-size="12px" text-anchor="middle" font-family="monospace">SUPERVISOR PODIUM</text>
+        <text x="67.5%" y="80%" fill="#444" font-size="12px" text-anchor="middle" font-family="monospace">LOADING DOCK</text>
+        <text x="90%" y="85%" fill="#444" font-size="12px" text-anchor="middle" font-family="monospace">BREAKROOM</text>
+        
+        <!-- SVG Interactive tokens will be drawn here dynamically -->
+        <g id="map-tokens"></g>
+      </svg>
+      <div class="map-legend">GREEN = ACTIVE // CRT BLUEPRINT AT DEPTH 61</div>
+    </div>
+  `;
+  
+  pane.appendChild(container);
+  
+  const select = document.getElementById('map-episode-select');
+  select.addEventListener('change', (e) => {
+    updateMapTokens(parseInt(e.target.value));
+  });
+  
+  // Set default selection
+  updateMapTokens(1);
+}
+
+function updateMapTokens(epId) {
+  const g = document.getElementById('map-tokens');
+  if(!g) return;
+  g.innerHTML = '';
+  
+  const ep = CONTINUITY_TIMELINE.find(item => item.id === epId);
+  if(!ep) return;
+  
+  // Positions mapping
+  const positions = {
+    1: { stan: "The Sorting Floor", kip: "Front Lobby", chuck: "The Supervisor's Podium" },
+    2: { stan: "The Sorting Floor", kip: "The Sorting Floor", chuck: "The Supervisor's Podium" },
+    3: { stan: "The Sorting Floor", kip: "The LLV Graveyard", chuck: "The Supervisor's Podium" },
+    4: { stan: "The Sorting Floor", kip: "The Sorting Floor", barb: "The Sorting Floor", chuck: "The Supervisor's Podium" },
+    5: { stan: "The Sorting Floor", kip: "The Sorting Floor", sparky: "The Sorting Floor" },
+    6: { heather: "The LLV Graveyard", stan: "The Loading Dock", kip: "The LLV Graveyard" },
+    7: { chuck: "The Supervisor's Podium", barb: "The Sorting Floor", kip: "The Sorting Floor" },
+    8: { stan: "The Loading Dock", chuck: "The Supervisor's Podium", sparky: "The Loading Dock" },
+    9: { stan: "The Loading Dock", kip: "The Loading Dock", heather: "The Loading Dock", barb: "The Loading Dock", chuck: "The Supervisor's Podium" },
+    10: { stan: "The Sorting Floor", kip: "The Sorting Floor", barb: "The Sorting Floor", heather: "The Sorting Floor", chuck: "The Supervisor's Podium", sparky: "The Sorting Floor" },
+    11: { stan: "The Loading Dock", kip: "The Loading Dock", heather: "The Loading Dock", chuck: "The Supervisor's Podium" },
+    12: { stan: "The Sorting Floor", kip: "The Sorting Floor", barb: "The Sorting Floor", chuck: "The Supervisor's Podium" }
+  };
+  
+  const mapping = positions[epId] || {};
+  
+  let tokenCount = 0;
+  Object.keys(mapping).forEach(name => {
+    const loc = mapping[name];
+    const coords = FACILITY_MAP[loc];
+    if (coords) {
+      tokenCount++;
+      // Parse coordinates as numbers from percentage
+      const xPercent = parseFloat(coords.x);
+      const yPercent = parseFloat(coords.y);
+      
+      const cx = (xPercent / 100) * 100; // keep in percentage for SVG mapping
+      const cy = (yPercent / 100) * 100;
+      
+      // Draw token dot
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", cx + "%");
+      circle.setAttribute("cy", (cy + (tokenCount * 4 - 8)) + "%"); // slight vertical offset for overlap prevention
+      circle.setAttribute("r", "10");
+      circle.setAttribute("fill", "#050505");
+      circle.setAttribute("stroke", "#33ff33");
+      circle.setAttribute("stroke-width", "2");
+      circle.style.cursor = "pointer";
+      
+      // Draw glow ring
+      const pulse = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      pulse.setAttribute("cx", cx + "%");
+      pulse.setAttribute("cy", (cy + (tokenCount * 4 - 8)) + "%");
+      pulse.setAttribute("r", "16");
+      pulse.setAttribute("fill", "none");
+      pulse.setAttribute("stroke", "#33ff33");
+      pulse.setAttribute("stroke-dasharray", "2 2");
+      pulse.setAttribute("opacity", "0.4");
+      
+      // Draw text token label
+      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.setAttribute("x", cx + "%");
+      text.setAttribute("y", (cy + (tokenCount * 4 - 14)) + "%");
+      text.setAttribute("fill", "#fff");
+      text.setAttribute("font-size", "10px");
+      text.setAttribute("text-anchor", "middle");
+      text.setAttribute("font-family", "monospace");
+      text.textContent = name.toUpperCase();
+      
+      g.appendChild(pulse);
+      g.appendChild(circle);
+      g.appendChild(text);
+    }
+  });
+}
+
+function renderAnalyzerTab(pane) {
+  pane.innerHTML = '';
+  
+  const container = document.createElement('div');
+  container.className = 'analyzer-container';
+  
+  container.innerHTML = `
+    <div class="analyzer-input-area">
+      <h3 style="margin-top:0; color:#fff; font-size:1.1rem; border-bottom:1px solid #222; padding-bottom: 0.5rem;">CONTINUITY SCRIPT AUDITOR</h3>
+      <div style="font-size:0.8rem; color:#888; margin-bottom:0.5rem;">
+        Paste your script or dialogue down below to run a real-time sanity check against the established lore rules.
+      </div>
+      <textarea id="analyzer-text" class="analyzer-textarea" placeholder="STAN: I'm not moving a muscle until Barb gets down here..."></textarea>
+      <button class="analyzer-btn" id="run-audit-btn">RUN LORE AUDIT</button>
+    </div>
+    <div class="analyzer-results">
+      <div style="font-size:0.8rem; color:#888; border-bottom:1px solid #222; padding-bottom: 0.5rem; margin-bottom: 0.8rem; text-transform: uppercase;">Audit Output Console</div>
+      <div id="analyzer-logs">
+        <div class="audit-log-line info">[CONSOLE READY] Awaiting script load...</div>
+      </div>
+    </div>
+  `;
+  
+  pane.appendChild(container);
+  
+  document.getElementById('run-audit-btn').addEventListener('click', () => {
+    const text = document.getElementById('analyzer-text').value;
+    runScriptAudit(text);
+  });
+}
+
+function runScriptAudit(text) {
+  const logs = document.getElementById('analyzer-logs');
+  if(!logs) return;
+  
+  logs.innerHTML = '';
+  
+  if(!text || text.trim() === '') {
+    logs.innerHTML = `<div class="audit-log-line error">[AUDIT ERROR] Script payload is empty. Insert dialogue lines first.</div>`;
+    return;
+  }
+  
+  let lineCount = 0;
+  let violationCount = 0;
+  
+  // Split into lines
+  const lines = text.split('\n');
+  
+  // Calculate vulgarity count
+  const vulgarWords = ["shit", "fuck", "dick", "ass", "bastard", "bitch", "damn"];
+  let vulgarCount = 0;
+  const words = text.toLowerCase().split(/\s+/);
+  words.forEach(w => {
+    const cleaned = w.replace(/[^a-z]/g, '');
+    if(vulgarWords.includes(cleaned)) vulgarCount++;
+  });
+  
+  const vulgarRatio = Math.round((vulgarCount / (words.length || 1)) * 100);
+  
+  // Process lore rules
+  const auditLogs = [];
+  
+  lines.forEach((line, index) => {
+    if(line.trim() === '') return;
+    lineCount++;
+    
+    // Check speaker if line follows "SPEAKER: dialogue"
+    const parts = line.split(':');
+    let speaker = null;
+    let dialogue = line;
+    if(parts.length > 1 && parts[0].trim().toUpperCase() === parts[0].trim()) {
+      speaker = parts[0].trim().toUpperCase();
+      dialogue = parts.slice(1).join(':').toLowerCase();
+    } else {
+      dialogue = line.toLowerCase();
+    }
+    
+    // Run checks
+    LORE_VIOLATIONS.forEach(rule => {
+      // Rule checks speaker match if specified
+      if(rule.speaker && rule.speaker !== speaker) return;
+      
+      // Rule check keyword match
+      if(dialogue.includes(rule.term)) {
+        // If require rule check
+        if(rule.require && !dialogue.includes(rule.require.toLowerCase())) {
+          violationCount++;
+          auditLogs.push({
+            type: 'warning',
+            msg: `Line ${index + 1}: ${rule.warning}`
+          });
+          return;
+        }
+        
+        if(!rule.require) {
+          violationCount++;
+          auditLogs.push({
+            type: 'warning',
+            msg: `Line ${index + 1}: ${rule.warning}`
+          });
+        }
+      }
+    });
+  });
+  
+  // Render results
+  const summaryLine = document.createElement('div');
+  summaryLine.className = 'audit-log-line info';
+  summaryLine.innerHTML = `[AUDIT RUNNING] Parsed ${lineCount} script lines. Vulgarity-to-Lore ratio: <span style="color:#ff00ff;">${vulgarRatio}%</span>.`;
+  logs.appendChild(summaryLine);
+  
+  if(vulgarRatio === 0 && lineCount > 0) {
+    const toneWarning = document.createElement('div');
+    toneWarning.className = 'audit-log-line warning';
+    toneWarning.innerText = `[TONE ADVICE] Script has 0% vulgarity. Add more dark-comedy workplace flavor and corporate spite.`;
+    logs.appendChild(toneWarning);
+  } else if(vulgarRatio > 0) {
+    const toneSuccess = document.createElement('div');
+    toneSuccess.className = 'audit-log-line success';
+    toneSuccess.innerText = `[TONE SUCCESS] Vulgarity-to-Lore ratio is optimal. Workplace misery levels verified.`;
+    logs.appendChild(toneSuccess);
+  }
+  
+  if(auditLogs.length === 0) {
+    const successLine = document.createElement('div');
+    successLine.className = 'audit-log-line success';
+    successLine.innerText = `[AUDIT COMPLETE] 0 continuity conflicts found. Script matches established lore.`;
+    logs.appendChild(successLine);
+  } else {
+    auditLogs.forEach(log => {
+      const el = document.createElement('div');
+      el.className = `audit-log-line ${log.type}`;
+      el.innerText = log.msg;
+      logs.appendChild(el);
+    });
+    
+    const failLine = document.createElement('div');
+    failLine.className = 'audit-log-line error';
+    failLine.innerText = `[AUDIT COMPLETE] ${violationCount} continuity conflicts detected. Correction advised.`;
+    logs.appendChild(failLine);
+  }
+}
+
+window.__closeContinuity = () => {
+  state.view = 'home';
+  render();
+};
 
 render()
