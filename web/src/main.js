@@ -670,23 +670,23 @@ const CONTINUITY_CHARS = {
 };
 
 const CONTINUITY_TIMELINE = [
-  { id: 1, title: "EP.01 — THE SHADOW DAY", released: true, location: "The Sorting Floor", milestone: "Kip gets hired; Stan performs the Shadow Day ritual.", grievance: "None", relic: "Stan's Stained Mug" },
-  { id: 2, title: "EP.02 — TABLE 2 BLOODLINE", released: true, location: "The Sorting Floor", milestone: "Kip experiences the Table 2 Curse (Bone-Marrow Burn).", grievance: "None", relic: "Green Tag Bag" },
+  { id: 1, title: "EP.01 — THE SHADOW DAY", released: true, location: "Carrier Cases", milestone: "Kip gets hired; Stan performs the Shadow Day ritual.", grievance: "None", relic: "Stan's Stained Mug" },
+  { id: 2, title: "EP.02 — TABLE 2 BLOODLINE", released: true, location: "Carrier Cases", milestone: "Kip experiences the Table 2 Curse (Bone-Marrow Burn).", grievance: "None", relic: "Green Tag Bag" },
   { id: 3, title: "EP.03 — THE PIVOT DIMENSION", released: true, location: "The LLV Graveyard", milestone: "Kip and Stan enter the time-dilated Pivot Dimension.", grievance: "None", relic: "64-Wraps" },
-  { id: 4, title: "EP.04 — THE CBA SHIELD", released: true, location: "The Sorting Floor", milestone: "Union Steward Barb defends carriers from Chuck's scanner sweeps.", grievance: "Article 8 Vow", relic: "Master Contract" },
-  { id: 5, title: "EP.05 — DEAD LETTER DEEP-DIVE", released: true, location: "The Sorting Floor", milestone: "Descent into the Dead Letter Office (DLO) to find Benjamin Franklin's ghost.", grievance: "Article 16 Shield", relic: "Golden Arrow Key" },
+  { id: 4, title: "EP.04 — THE CBA SHIELD", released: true, location: "Carrier Cases", milestone: "Union Steward Barb defends carriers from Chuck's scanner sweeps.", grievance: "Article 8 Vow", relic: "Master Contract" },
+  { id: 5, title: "EP.05 — DEAD LETTER DEEP-DIVE", released: true, location: "Carrier Cases", milestone: "Descent into the Dead Letter Office (DLO) to find Benjamin Franklin's ghost.", grievance: "Article 16 Shield", relic: "Golden Arrow Key" },
   { id: 6, title: "EP.06 — THE RURAL FRONTIER", released: true, location: "The LLV Graveyard", milestone: "Alliance with Heather and the Rural Carrier rangers.", grievance: "None", relic: "RHD Subaru Outback" },
   { id: 7, title: "EP.07 — THE 204B PARASITE", released: true, location: "The Supervisor's Podium", milestone: "A 204b tries to infect the carriers but is rejected.", grievance: "Weingarten Rite", relic: "None" },
   { id: 8, title: "EP.08 — THE IRON LIFTERS", released: true, location: "The Loading Dock", milestone: "Mail Handlers defend the dock during the Siege of Tour 3.", grievance: "None", relic: "Tub Shield" },
   { id: 9, title: "EP.09 — THE ALL-CALL BLIZZARD", released: true, location: "The Loading Dock", milestone: "All guilds unite to survive the freezing of the Algorithm.", grievance: "None", relic: "Postal Beanie" },
-  { id: 10, title: "EP.10 — THE SOLIDARITY MANDATE", released: true, location: "The Sorting Floor", milestone: "The four guilds assemble to sever the localized Algorithm.", grievance: "Step 4 National Strike", relic: "Solidarity Mandate Key" },
+  { id: 10, title: "EP.10 — THE SOLIDARITY MANDATE", released: true, location: "Carrier Cases", milestone: "The four guilds assemble to sever the localized Algorithm.", grievance: "Step 4 National Strike", relic: "Solidarity Mandate Key" },
   { id: 11, title: "EP.11 — THE DEAD SCANNERS", released: true, location: "The Loading Dock", milestone: "Silence falls on the post office as OIG Agent Vance arrives.", grievance: "None", relic: "Dark Scanner" },
-  { id: 12, title: "EP.12 — THE WEINGARTEN WARD", released: true, location: "The Sorting Floor", milestone: "Barb uses the Weingarten Smite to blast Agent Vance's aura.", grievance: "Weingarten Rite Summon", relic: "Weingarten Smite" }
+  { id: 12, title: "EP.12 — THE WEINGARTEN WARD", released: true, location: "Carrier Cases", milestone: "Barb uses the Weingarten Smite to blast Agent Vance's aura.", grievance: "Weingarten Rite Summon", relic: "Weingarten Smite" }
 ];
 
 const FACILITY_MAP = {
   "Front Lobby": { x: "15%", y: "20%" },
-  "The Sorting Floor": { x: "50%", y: "40%" },
+  "Carrier Cases": { x: "50%", y: "40%" },
   "The Supervisor's Podium": { x: "80%", y: "25%" },
   "The Loading Dock": { x: "50%", y: "75%" },
   "The LLV Graveyard": { x: "15%", y: "80%" },
@@ -699,6 +699,10 @@ const LORE_VIOLATIONS = [
   { term: "hash", warning: "[SOBRIETY LOG WARNING] Ensure Stan stays clean. Standard sobriety metrics are reset to Day 0 if a vape/hash is purchased." },
   { speaker: "KIP", term: "8 & skate", warning: "[LORE CONTRADICTION] Kip (CCA) cannot perform the 8 & Skate teleportation jutsu without Career status. Only Level 11+ Regulars can cast this spell." },
   { speaker: "KIP", term: "eight and skate", warning: "[LORE CONTRADICTION] Kip (CCA) cannot perform the 8 & Skate teleportation jutsu without Career status. Only Level 11+ Regulars can cast this spell." },
+  { speaker: "KIP", term: "plant", warning: "[GEOGRAPHY CONTRADICTION] Kip is a CCA and works out of a local Delivery Station, not the Processing Plant. Plant floors sort bulk mail using APWU Clerks, PSEs, and NPMHU Mail Handlers." },
+  { speaker: "KIP", term: "pdc", warning: "[GEOGRAPHY CONTRADICTION] Kip is a CCA and works out of a local Delivery Station, not the P&DC. Plant floors sort bulk mail using APWU Clerks, PSEs, and NPMHU Mail Handlers." },
+  { speaker: "STAN", term: "plant", warning: "[GEOGRAPHY CONTRADICTION] Stan is a City Carrier and works out of a local Delivery Station, not the Processing Plant. Plant floors sort bulk mail using APWU Clerks, PSEs, and NPMHU Mail Handlers." },
+  { speaker: "STAN", term: "pdc", warning: "[GEOGRAPHY CONTRADICTION] Stan is a City Carrier and works out of a local Delivery Station, not the P&DC. Plant floors sort bulk mail using APWU Clerks, PSEs, and NPMHU Mail Handlers." },
   { speaker: "STAN", term: "run", warning: "[CHARACTER ANOMALY] Stan's Lawful Apathetic alignment prevents him from running or rushing. Maintain the Unbreakable Stride passive." },
   { speaker: "STAN", term: "rushed", warning: "[CHARACTER ANOMALY] Stan's Lawful Apathetic alignment prevents him from running or rushing. Maintain the Unbreakable Stride passive." },
   { speaker: "STAN", term: "sprinted", warning: "[CHARACTER ANOMALY] Stan's Lawful Apathetic alignment prevents him from running or rushing. Maintain the Unbreakable Stride passive." },
@@ -897,7 +901,7 @@ function renderMapTab(pane) {
         <!-- Zone text labels -->
         <text x="22.5%" y="35%" fill="#444" font-size="12px" text-anchor="middle" font-family="monospace">FRONT LOBBY</text>
         <text x="22.5%" y="75%" fill="#444" font-size="12px" text-anchor="middle" font-family="monospace">LLV GRAVEYARD</text>
-        <text x="67.5%" y="42%" fill="#444" font-size="12px" text-anchor="middle" font-family="monospace">THE SORTING FLOOR</text>
+        <text x="67.5%" y="42%" fill="#444" font-size="12px" text-anchor="middle" font-family="monospace">CARRIER CASES</text>
         <text x="80%" y="15%" fill="#444" font-size="12px" text-anchor="middle" font-family="monospace">SUPERVISOR PODIUM</text>
         <text x="67.5%" y="80%" fill="#444" font-size="12px" text-anchor="middle" font-family="monospace">LOADING DOCK</text>
         <text x="90%" y="85%" fill="#444" font-size="12px" text-anchor="middle" font-family="monospace">BREAKROOM</text>
@@ -930,18 +934,18 @@ function updateMapTokens(epId) {
   
   // Positions mapping
   const positions = {
-    1: { stan: "The Sorting Floor", kip: "Front Lobby", chuck: "The Supervisor's Podium" },
-    2: { stan: "The Sorting Floor", kip: "The Sorting Floor", chuck: "The Supervisor's Podium" },
-    3: { stan: "The Sorting Floor", kip: "The LLV Graveyard", chuck: "The Supervisor's Podium" },
-    4: { stan: "The Sorting Floor", kip: "The Sorting Floor", barb: "The Sorting Floor", chuck: "The Supervisor's Podium" },
-    5: { stan: "The Sorting Floor", kip: "The Sorting Floor", sparky: "The Sorting Floor" },
+    1: { stan: "Carrier Cases", kip: "Front Lobby", chuck: "The Supervisor's Podium" },
+    2: { stan: "Carrier Cases", kip: "Carrier Cases", chuck: "The Supervisor's Podium" },
+    3: { stan: "Carrier Cases", kip: "The LLV Graveyard", chuck: "The Supervisor's Podium" },
+    4: { stan: "Carrier Cases", kip: "Carrier Cases", barb: "Carrier Cases", chuck: "The Supervisor's Podium" },
+    5: { stan: "Carrier Cases", kip: "Carrier Cases", sparky: "Carrier Cases" },
     6: { heather: "The LLV Graveyard", stan: "The Loading Dock", kip: "The LLV Graveyard" },
-    7: { chuck: "The Supervisor's Podium", barb: "The Sorting Floor", kip: "The Sorting Floor" },
+    7: { chuck: "The Supervisor's Podium", barb: "Carrier Cases", kip: "Carrier Cases" },
     8: { stan: "The Loading Dock", chuck: "The Supervisor's Podium", sparky: "The Loading Dock" },
     9: { stan: "The Loading Dock", kip: "The Loading Dock", heather: "The Loading Dock", barb: "The Loading Dock", chuck: "The Supervisor's Podium" },
-    10: { stan: "The Sorting Floor", kip: "The Sorting Floor", barb: "The Sorting Floor", heather: "The Sorting Floor", chuck: "The Supervisor's Podium", sparky: "The Sorting Floor" },
+    10: { stan: "Carrier Cases", kip: "Carrier Cases", barb: "Carrier Cases", heather: "Carrier Cases", chuck: "The Supervisor's Podium", sparky: "Carrier Cases" },
     11: { stan: "The Loading Dock", kip: "The Loading Dock", heather: "The Loading Dock", chuck: "The Supervisor's Podium" },
-    12: { stan: "The Sorting Floor", kip: "The Sorting Floor", barb: "The Sorting Floor", chuck: "The Supervisor's Podium" }
+    12: { stan: "Carrier Cases", kip: "Carrier Cases", barb: "Carrier Cases", chuck: "The Supervisor's Podium" }
   };
   
   const mapping = positions[epId] || {};
